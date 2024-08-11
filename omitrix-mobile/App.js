@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {StatusBar} from 'expo-status-bar';
-import {Button, Modal, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, FlatList, Modal, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {SHA256} from 'crypto-js';
 
 export default function App() {
@@ -21,12 +21,15 @@ export default function App() {
     }
 
     const addGoalHandler = () => {
-        setGoals(currentGoals => [...currentGoals, enterGoalTxt])
+        setGoals(currentGoals => [...currentGoals, {
+            text: enterGoalTxt,
+            id: generateRandomString(5)
+        }])
         setEnterGoalTxt('')
     }
 
     function clearGoals() {
-       setGoals([])
+        setGoals([])
     }
 
     return (
@@ -35,7 +38,7 @@ export default function App() {
                 <TextInput style={styles.textInput} placeholder={'Enter your course goal here'}
                            onChangeText={goalInputHandler} value={enterGoalTxt}/>
                 <View style={styles.viewButton}>
-                    <Button style={styles.button} title={'Add Goal'} onPress={addGoalHandler} color='#EE6B6E' />
+                    <Button style={styles.button} title={'Add Goal'} onPress={addGoalHandler} color='#EE6B6E'/>
                 </View>
                 <View style={styles.viewButton}>
                     <Button style={styles.button} title={'Clear All'} onPress={clearGoals}/>
@@ -43,13 +46,19 @@ export default function App() {
             </View>
             <View style={styles.listItems}>
                 <Text>#List of goals</Text>
-                <ScrollView alwaysBounceVertical={false}>
-                    {goals.map(goal => (
-                        <View style={styles.goalItem}>
-                            <Text style={styles.goalItemText} key={goal + generateRandomString(5)}>{goal}</Text>
-                        </View>
-                    ))}
-                </ScrollView>
+                <FlatList
+                    data={goals}
+                    renderItem={itemData =>
+                        (
+                            <View style={styles.goalItem}>
+                                <Text style={styles.goalItemText}>
+                                    {itemData.index}. {itemData.item.text}
+                                </Text>
+                            </View>
+                        )}
+                    keyExtractor={(item, index) => item.id}
+                    alwaysBounceVertical={false}
+                />
             </View>
         </View>
     );
