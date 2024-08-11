@@ -4,9 +4,8 @@ import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
 import {SHA256} from 'crypto-js';
 
 export default function App() {
-    const [val, setVal] = useState('')
-    const [userName, setUserName] = useState('')
-    const [password, setPassword] = useState('')
+    const [enterGoalTxt, setEnterGoalTxt] = useState('')
+    const [goals, setGoals] = useState([]);
 
     function generateRandomString(length) {
         let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -17,36 +16,38 @@ export default function App() {
         return result;
     }
 
-    const login = () => {
-        let output = 'Please enter username and password!'
-        if (userName !== '' && password !== '') {
-            output = `Hey ${userName.toString()}:${SHA256()}`
-        }
-        setVal(output)
+    const goalInputHandler = (txt) => {
+        setEnterGoalTxt(txt)
     }
 
-    const logout = () => {
-        setVal('')
-        setUserName('')
-        setPassword('')
+    const addGoalHandler = () => {
+        setGoals(currentGoals => [...currentGoals, enterGoalTxt])
+        setEnterGoalTxt('')
     }
 
-    function onInputUserName(value) {
-        setUserName(value)
-    }
-
-    function onInputPassword(value) {
-        setPassword(value)
+    function clearGoals() {
+       setGoals([])
     }
 
     return (
         <View style={styles.appContainer}>
             <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} placeholder={'Your course goal'}/>
-                <Button style={styles.button} title={'Add goal'}/>
+                <TextInput style={styles.textInput} placeholder={'Enter your course goal here'}
+                           onChangeText={goalInputHandler} value={enterGoalTxt}/>
+                <View style={styles.viewButton}>
+                    <Button style={styles.button} title={'Add Goal'} onPress={addGoalHandler} color='#EE6B6E' />
+                </View>
+                <View style={styles.viewButton}>
+                    <Button style={styles.button} title={'Clear All'} onPress={clearGoals}/>
+                </View>
             </View>
-            <View>
-                <Text>List of goals...</Text>
+            <View style={styles.list}>
+                <Text>#List of goals</Text>
+                {goals.map(goal => (
+                    <View style={styles.goalItem}>
+                        <Text style={styles.goalItemText} key={goal + generateRandomString(5)}>{goal}</Text>
+                    </View>
+                ))}
             </View>
         </View>
     );
@@ -54,20 +55,45 @@ export default function App() {
 
 const styles = StyleSheet.create({
     appContainer: {
-        padding: 50
+        flex: 1,
+        paddingTop: 50,
+        paddingHorizontal: 25
     },
     inputContainer: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        marginBottom: 10,
     },
     textInput: {
-        borderColor: '#a2d5c6',
+        borderColor: '#DCDCDC',
         borderWidth: 1,
-        width: '80%',
-        marginRight: 8,
-        padding: 8
+        width: '65%',
+        marginRight: 5,
+        padding: 9
     },
-    button: {
-    }
+    list: {
+        flex: 8
+    },
+    viewButton: {
+        width: '17%',
+    },
+    buttonText: {
+        color: '#EE6B6E',
+        fontSize: 15
+    },
+    goalItem: {
+        backgroundColor: '#FBFBFB',
+        borderWidth: 1,
+        borderColor: '#EE6B6E',
+        borderStyle: 'solid',
+        borderCurve: 'circular',
+        marginTop: 5,
+        padding: 5,
+        borderRadius: 5
+    },
+    goalItemText: {}
 });

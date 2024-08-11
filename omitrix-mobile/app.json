@@ -13,14 +13,16 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.xq.omitrix"
+      "bundleIdentifier": "com.xq.omitrix",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.xq.omitrix"
+      "package": "com.xq.omitrix",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
