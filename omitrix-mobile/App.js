@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {StatusBar} from 'expo-status-bar';
-import {Button, Modal, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, Modal, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {SHA256} from 'crypto-js';
 
 export default function App() {
@@ -41,13 +41,15 @@ export default function App() {
                     <Button style={styles.button} title={'Clear All'} onPress={clearGoals}/>
                 </View>
             </View>
-            <View style={styles.list}>
+            <View style={styles.listItems}>
                 <Text>#List of goals</Text>
-                {goals.map(goal => (
-                    <View style={styles.goalItem}>
-                        <Text style={styles.goalItemText} key={goal + generateRandomString(5)}>{goal}</Text>
-                    </View>
-                ))}
+                <ScrollView alwaysBounceVertical={false}>
+                    {goals.map(goal => (
+                        <View style={styles.goalItem}>
+                            <Text style={styles.goalItemText} key={goal + generateRandomString(5)}>{goal}</Text>
+                        </View>
+                    ))}
+                </ScrollView>
             </View>
         </View>
     );
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
         marginRight: 5,
         padding: 9
     },
-    list: {
+    listItems: {
         flex: 8
     },
     viewButton: {
