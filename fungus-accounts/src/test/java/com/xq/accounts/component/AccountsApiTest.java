@@ -22,7 +22,7 @@ public class AccountsApiTest {
     String fetchEndpoint = "/api/accounts/fetch";
     String updateEndpoint = "/api/accounts/update";
     String deleteEndpoint = "/api/accounts/delete";
-    String baseURL = "http://localhost:8080";
+    String baseURL = "http://localhost:8081";
     final String expectedEmailValidationMsg = "Email address must be a valid email";
 
     @BeforeEach
