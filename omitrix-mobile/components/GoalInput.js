@@ -1,4 +1,4 @@
-import {Button, StyleSheet, TextInput, View} from "react-native";
+import {Button, Modal, StyleSheet, TextInput, View} from "react-native";
 import {useState} from "react";
 
 function GoalInput(props) {
@@ -14,24 +14,25 @@ function GoalInput(props) {
     }
 
     return (
-        <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder={'Enter your course goal here'}
-                       onChangeText={goalInputHandler} value={enterGoalTxt} />
-            <View style={styles.viewButton}>
-                <Button title={'Add Goal'} onPress={addGoalHandler} color='#EE6B6E'/>
+        <Modal visible={props.isVisible} animationType={'slide'}>
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.textInput} placeholder={'Enter your course goal here'}
+                           onChangeText={goalInputHandler} value={enterGoalTxt}/>
+                <View style={styles.buttonContainer}>
+                    <View style={styles.button}><Button title={'Add Goal'} onPress={addGoalHandler} color='#EE6B6E'/></View>
+                    <View style={styles.button}><Button title={'Clear All'} onPress={props.onClearGoals}/></View>
+                    <View style={styles.button}><Button title={'Close'} onPress={props.onDismiss}/></View>
+                </View>
             </View>
-            <View style={styles.viewButton}>
-                <Button title={'Clear All'} onPress={props.onClearGoals}/>
-            </View>
-        </View>
+        </Modal>
     )
 }
 
 const styles = StyleSheet.create({
     inputContainer: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         borderBottomWidth: 1,
         borderBottomColor: 'black',
@@ -40,13 +41,21 @@ const styles = StyleSheet.create({
     textInput: {
         borderColor: '#DCDCDC',
         borderWidth: 1,
-        width: '65%',
-        marginRight: 5,
+        width: '100%',
         padding: 9
     },
-    viewButton: {
-        width: '17%',
+    buttonContainer: {
+        marginTop: 15,
+        flexDirection: 'row'
     },
+    button: {
+        width: '30%',
+        marginHorizontal: 5,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: '#EE6B6E'
+    }
 })
 
 export default GoalInput

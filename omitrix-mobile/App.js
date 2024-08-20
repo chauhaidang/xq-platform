@@ -7,6 +7,7 @@ import GoalInput from "./components/GoalInput";
 
 export default function App() {
     const [goals, setGoals] = useState([]);
+    const [goalModalVisible, setGoalModalVisible] = useState(false);
 
     function generateRandomString(length) {
         let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -22,6 +23,7 @@ export default function App() {
             text: enterGoalTxt,
             id: generateRandomString(5)
         }])
+        setGoalModalVisible(false)
     }
 
     function clearGoals() {
@@ -32,9 +34,18 @@ export default function App() {
         setGoals(currentGoals => currentGoals.filter(goal => goal.id !== id))
     }
 
+    function addNewGoalHandler() {
+        setGoalModalVisible(true)
+    }
+
+    function dismissModal() {
+        setGoalModalVisible(false)
+    }
+
     return (
         <View style={styles.appContainer}>
-            <GoalInput onAddGoal={addGoalHandler} onClearGoals={clearGoals}/>
+            <Button title={'ADD NEW GOAL'} onPress={addNewGoalHandler} color='#EE6B6E'/>
+            <GoalInput isVisible={goalModalVisible} onAddGoal={addGoalHandler} onClearGoals={clearGoals} onDismiss={dismissModal}/>
             <View style={styles.listItems}>
                 <Text>#List of goals</Text>
                 <FlatList
