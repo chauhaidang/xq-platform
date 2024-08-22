@@ -15,6 +15,7 @@ repositories {
 dependencies {
     compileOnly("org.slf4j:slf4j-api")
     compileOnly("org.projectlombok:lombok")
+    developmentOnly 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
     annotationProcessor("org.projectlombok:lombok")
     runtimeOnly 'com.h2database:h2:2.2.224'
