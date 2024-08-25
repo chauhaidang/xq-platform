@@ -2,8 +2,15 @@ package com.xq.accounts.controller;
 
 import com.xq.accounts.constants.AccountsContants;
 import com.xq.accounts.dto.CustomerDto;
+import com.xq.accounts.dto.ErrorResponseDto;
 import com.xq.accounts.dto.ResponseDto;
 import com.xq.accounts.service.IAccountsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -14,6 +21,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(
+        name = "REST APIS for Accounts",
+        description = "REST APIS for Account service"
+)
 @RestController
 @RequestMapping(path = "/api/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Slf4j
@@ -23,6 +34,19 @@ public class AccountsController {
     IAccountsService accountService;
 
     @PostMapping("/create")
+    @Operation(
+            summary = "Create an account",
+            description = "API endpoint to create an account information by input account request"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Http status created",
+                    content = @Content(
+                            schema = @Schema(implementation = ResponseDto.class)
+                    )
+            )
+    })
     public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) {
         log.info("Request received to create account for customer: {}", customerDto.toString());
         accountService.createAccount(customerDto);
@@ -32,6 +56,16 @@ public class AccountsController {
     }
 
     @GetMapping("/fetch")
+    @Operation(
+            summary = "Get an account",
+            description = "API endpoint to get an account information by mobile number"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http status success"
+            )
+    })
     public ResponseEntity<CustomerDto> fetchAccount(
             @RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "MobileNumber must be 10 digits") String mobileNumber
     ) {
@@ -41,6 +75,23 @@ public class AccountsController {
     }
 
     @PutMapping("/update")
+    @Operation(
+            summary = "Update an account",
+            description = "API endpoint to update an account by input account request"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http status success"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Http status internal server error - can not update an account",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
     public ResponseEntity<ResponseDto> updateAccount(@Valid @RequestBody CustomerDto customerDto) {
         log.info("Request received to update account details for customer with mobileNumber: {}",
                 customerDto.getAccount().getAccountNumber().toString());
@@ -54,6 +105,23 @@ public class AccountsController {
                         .body(new ResponseDto(AccountsContants.STATUS_500, AccountsContants.MSG_500));
     }
 
+    @Operation(
+            summary = "Delete an account",
+            description = "API endpoint to delete an account by mobile number"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http status success"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Http status internal server error - can not delete account",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteAccount(
             @RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "MobileNumber must be 10 digits") String mobileNumber
