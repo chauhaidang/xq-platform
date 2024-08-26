@@ -10,3 +10,12 @@ ext {
     lombok_version = '1.18.30'
     junit_version = '5.10.0'
 }
+
+tasks.register("prepareAndroidApk", Copy.class) {
+    group 'xq'
+    from './omitrix-mobile/android/app/build/outputs/apk/release/app-release.apk'
+    into './sunstrike/src/test/resources'
+    rename { String fileName ->
+        fileName.replace('app-release', 'xq')
+    }
+}
