@@ -1,5 +1,3 @@
-import com.xq.JarCount
-
 plugins {
     id 'java'
     id 'jacoco'
@@ -7,7 +5,7 @@ plugins {
 }
 
 group = 'com.xq'
-version = '0.1.0'
+version = '0.2.0'
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -44,6 +42,7 @@ configurations {
     }
 }
 
+//Custom configuration for gradle project, set configuration in caller module
 class TestConfiguration {
     String path
 }
@@ -52,40 +51,7 @@ project.extensions.create("unitTest", TestConfiguration)
 project.extensions.create("intTest", TestConfiguration)
 project.extensions.create("compTest", TestConfiguration)
 
-//Source set configuration
-sourceSets.create("functionalTest")
-
-//Task registration
-tasks.register("functionalTest", Test) {
-    testClassesDirs = sourceSets.functionalTest.output.classesDirs
-    classpath = sourceSets.functionalTest.runtimeClasspath
-    useJUnitPlatform()
-}
-
-tasks.register("xqBundle", Zip) {
-    group = "xq"
-    description = "Bundle jar & files in class path"
-    from(tasks.jar)
-    from(configurations.runtimeClasspath)
-    destinationDirectory.set(layout.buildDirectory.dir("dist"))
-}
-
-tasks.register("xqCountJars", JarCount) {
-    group = "xq"
-    description = "Count jars in class path"
-    allJars.from(tasks.jar)
-    allJars.from(configurations.runtimeClasspath)
-    countFile.set(layout.buildDirectory.file("gen/count.txt"))
-}
-
-tasks.register("xqBuildAll") {
-    group = "xq"
-    description = "Build all"
-    dependsOn(tasks.named("build"))
-    dependsOn(tasks.named("xqCountJars"))
-}
-
-//Tasks configuration
+//Test configuration
 tasks.named("test") {
     useJUnitPlatform()
     maxParallelForks = 4
@@ -95,21 +61,4 @@ tasks.named("test") {
 
 tasks.named("jacocoTestReport") {
     dependsOn(tasks.named("test"))
-}
-
-tasks.named("build") {
-    dependsOn(tasks.named("xqBundle"))
-}
-
-tasks.register("testSlow", Test) {
-    group = "xq"
-    testClassesDirs = sourceSets.test.output.classesDirs
-    classpath = sourceSets.test.runtimeClasspath
-    useJUnitPlatform {
-        includeTags("slow")
-    }
-}
-
-tasks.check {
-    dependsOn("testSlow")
 }
