@@ -10,18 +10,18 @@
     "build:android": "expo run:android"
   },
   "dependencies": {
-    "@expo/metro-runtime": "~3.2.1",
+    "@expo/metro-runtime": "3.2.3",
     "crypto-js": "^4.2.0",
-    "expo": "~51.0.22",
-    "expo-dev-client": "~4.0.23",
-    "expo-status-bar": "~1.12.1",
+    "expo": "51.0.31",
+    "expo-dev-client": "4.0.25",
+    "expo-status-bar": "1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "0.19.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "7.25.2"
   },
   "private": true
 }

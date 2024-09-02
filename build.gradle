@@ -19,3 +19,9 @@ tasks.register("prepareAndroidApk", Copy.class) {
         fileName.replace('app-release', 'xq')
     }
 }
+
+tasks.register("prepareIOSApp", Copy.class) {
+    group 'xq'
+    from './omitrix-mobile/ios/build/Products/Release-iphonesimulator/omitrixmobile.app/'
+    into './sunstrike/src/test/resources/xq.app'
+}
