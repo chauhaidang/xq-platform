@@ -1,13 +1,22 @@
 package com.xq;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.Properties;
+
+import static com.xq.Constant.TEST_RESOURCE_DIR;
 
 public class ConfigReader {
     public Properties readConfig(String fileName) {
+        String configPath = Paths.get(TEST_RESOURCE_DIR, fileName).toString();
+        if (!new File(configPath).exists()) {
+           throw new RuntimeException("xq.properties not found!");
+        }
+        File file = new File(configPath);
         Properties props = new Properties();
-        try (InputStream in = getClass().getClassLoader().getResourceAsStream(fileName)) {
+        try (FileInputStream in = new FileInputStream(file.getAbsolutePath())) {
             props.load(in);
         } catch (IOException | NullPointerException e) {
             throw new RuntimeException("can't read config", e.getCause());
@@ -26,8 +35,18 @@ public class ConfigReader {
         return conf;
     }
 
+    public boolean isKeyExisting(Properties props, String key) {
+        return props.containsKey(key);
+    }
+
+    /**
+     * Used to read mandatory field in properties file
+     * @param props Properties loaded
+     * @param key Properties key
+     * @return value
+     */
     public String readConfigValue(Properties props, String key) {
-        if (!props.containsKey(key)) {
+        if (!isKeyExisting(props, key)) {
             throw new RuntimeException(String.format("Error reading config value: key '%s' not found!", key));
         }
         return props.getProperty(key);
@@ -37,7 +56,17 @@ public class ConfigReader {
         Config conf = new Config();
         Properties props = readConfig();
         conf.setSdkVersion(props.getProperty("sdk.version", "0.0.0"));
-        conf.setApiGateway(readConfigValue(props, "api.gateway"));
+        conf.setApiGateway(props.getProperty("api.gateway", "localhost"));
+
+        if (isKeyExisting(props, "mobile.platform")) {
+            conf.setMobileAndroidAppPath(readConfigValue(props, "mobile.androidAppPath"));
+            conf.setMobilePlatform(readConfigValue(props, "mobile.platform"));
+            conf.setMobilePlatformVersion(readConfigValue(props, "mobile.platformVersion"));
+            conf.setMobileDeviceName(readConfigValue(props, "mobile.deviceName"));
+            conf.setMobileAppWaitActivity(readConfigValue(props, "mobile.appWaitActivity"));
+            conf.setMobileAppiumUrl(readConfigValue(props, "mobile.appiumUrl"));
+            conf.setMobileCmdTimeout(Integer.parseInt(readConfigValue(props, "mobile.cmdTimeout")));
+        }
 
         return conf;
     }
