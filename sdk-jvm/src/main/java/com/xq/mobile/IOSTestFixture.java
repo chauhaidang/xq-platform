@@ -7,10 +7,10 @@ import org.testng.annotations.BeforeMethod;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
-public class AndroidTestFixture {
-    public AndroidTestFixture() {
+public class IOSTestFixture {
+    public IOSTestFixture() {
         Configuration.browserSize = null;
-        Configuration.browser = AndroidDriverProvider.class.getName();
+        Configuration.browser = IOSDriverProvider.class.getName();
         Configuration.timeout = Constant.DEFAULT_DRIVER_TIMEOUT;
     }
     protected void beforeEachMethod() {

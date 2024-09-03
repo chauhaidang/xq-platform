@@ -13,4 +13,6 @@ public class Config {
     private String mobileAppWaitActivity;
     private int mobileCmdTimeout;
     private String mobileAppiumUrl;
+    private String mobileIOSAppPath;
+    private String mobileDeviceUdid;
 }

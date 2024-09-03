@@ -12,7 +12,7 @@ public class ConfigReader {
     public Properties readConfig(String fileName) {
         String configPath = Paths.get(TEST_RESOURCE_DIR, fileName).toString();
         if (!new File(configPath).exists()) {
-           throw new RuntimeException("xq.properties not found!");
+            throw new RuntimeException("xq.properties not found!");
         }
         File file = new File(configPath);
         Properties props = new Properties();
@@ -41,8 +41,9 @@ public class ConfigReader {
 
     /**
      * Used to read mandatory field in properties file
+     *
      * @param props Properties loaded
-     * @param key Properties key
+     * @param key   Properties key
      * @return value
      */
     public String readConfigValue(Properties props, String key) {
@@ -59,13 +60,23 @@ public class ConfigReader {
         conf.setApiGateway(props.getProperty("api.gateway", "localhost"));
 
         if (isKeyExisting(props, "mobile.platform")) {
-            conf.setMobileAndroidAppPath(readConfigValue(props, "mobile.androidAppPath"));
+
             conf.setMobilePlatform(readConfigValue(props, "mobile.platform"));
             conf.setMobilePlatformVersion(readConfigValue(props, "mobile.platformVersion"));
-            conf.setMobileDeviceName(readConfigValue(props, "mobile.deviceName"));
             conf.setMobileAppWaitActivity(readConfigValue(props, "mobile.appWaitActivity"));
             conf.setMobileAppiumUrl(readConfigValue(props, "mobile.appiumUrl"));
             conf.setMobileCmdTimeout(Integer.parseInt(readConfigValue(props, "mobile.cmdTimeout")));
+
+            //Android
+            conf.setMobileAndroidAppPath(
+                    isKeyExisting(props, "mobile.androidAppPath") ?
+                            readConfigValue(props, "mobile.androidAppPath") : Constant.DEFAULT_ANDROID_APP_PATH);
+            conf.setMobileDeviceName(readConfigValue(props, "mobile.deviceName"));
+
+            //IOS
+            conf.setMobileIOSAppPath(isKeyExisting(props, "mobile.iosAppPath") ?
+                    readConfigValue(props, "mobile.iosAppPath") : Constant.DEFAULT_IOS_APP_PATH);
+            conf.setMobileDeviceUdid(readConfigValue(props, "mobile.udid"));
         }
 
         return conf;
