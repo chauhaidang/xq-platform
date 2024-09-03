@@ -9,14 +9,7 @@ import static com.codeborne.selenide.appium.SelenideAppium.$;
 
 public class AndroidTest extends AndroidTestFixture {
     @Test
-    void testLoginSuccessWithValidCredentials() {
-        $(byText("Login")).click();
-        $(AppiumBy.accessibilityId("input-email")).setValue("test@webdriver.io");
-        $(AppiumBy.accessibilityId("input-password")).setValue("Test1234!");
-        $(AppiumBy.accessibilityId("button-LOGIN")).click();
-        $(byText("Success")).shouldBe(visible);
-        $(byText("You are logged in!")).shouldBe(visible);
-        $(byText("OK"))
-                .shouldBe(clickable).click();
+    void testOpenApp() {
+        $(AppiumBy.accessibilityId("ADD NEW GOAL")).shouldBe(visible);
     }
 }
