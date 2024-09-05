@@ -6,8 +6,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "build:ios": "expo run:ios",
-    "build:android": "expo run:android"
+    "bip": "expo prebuild --no-install --platform ios",
+    "bi": "cd ios && pod install && sh ./build-sim.sh && cd ..",
+    "bap": "expo prebuild --no-install --platform android",
+    "ba": "cd android && ./gradlew :app:assembleRelease && cd .."
   },
   "dependencies": {
     "@expo/metro-runtime": "3.2.3",

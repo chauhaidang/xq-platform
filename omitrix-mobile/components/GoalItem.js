@@ -1,4 +1,5 @@
-import {Text, View, StyleSheet, Pressable} from "react-native";
+import {Text, View, StyleSheet, Pressable, Image} from "react-native";
+import {testProps} from "../utils/test-utils";
 
 function GoalItem(props) {
     const index = props.index
@@ -6,14 +7,15 @@ function GoalItem(props) {
     return (
         <View style={styles.goalItem}>
             <Pressable
+                {...testProps(`item-goal-${index}`)}
                 android_ripple={styles.androidRipple}
                 onPress={() => {
                     props.onDelete(props.id)
                 }}
-                style={({pressed})=> pressed && styles.iosRipple}
+                style={({pressed}) => pressed && styles.iosRipple}
             >
                 <Text style={styles.goalItemText}>
-                    {index}. {content}
+                    {content}
                 </Text>
             </Pressable>
         </View>
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderCurve: 'circular',
         marginTop: 5,
-        borderRadius: 5
+        borderRadius: 5,
     },
     goalItemText: {
         padding: 5,
