@@ -1,20 +1,20 @@
-import {Text, View, StyleSheet, Pressable, Image} from "react-native";
+import {Text, View, StyleSheet, Pressable} from "react-native";
 import {testProps} from "../utils/test-utils";
 
-function GoalItem(props) {
+function EntityItem(props) {
     const index = props.index
     const content = props.value
     return (
-        <View style={styles.goalItem}>
+        <View style={styles.entityItem}>
             <Pressable
-                {...testProps(`item-goal-${index}`)}
+                {...testProps(`item-entity-${index}`)}
                 android_ripple={styles.androidRipple}
                 onPress={() => {
                     props.onDelete(props.id)
                 }}
                 style={({pressed}) => pressed && styles.iosRipple}
             >
-                <Text style={styles.goalItemText}>
+                <Text style={styles.entityItemText}>
                     {content}
                 </Text>
             </Pressable>
@@ -23,7 +23,7 @@ function GoalItem(props) {
 }
 
 const styles = StyleSheet.create({
-    goalItem: {
+    entityItem: {
         backgroundColor: '#FBFBFB',
         borderWidth: 1,
         borderColor: '#EE6B6E',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         borderRadius: 5,
     },
-    goalItemText: {
+    entityItemText: {
         padding: 5,
         color: 'black'
     },
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default GoalItem
+export default EntityItem

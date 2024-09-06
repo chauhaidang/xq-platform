@@ -2,28 +2,28 @@ import {Button, Image, Modal, StyleSheet, TextInput, View} from "react-native";
 import {useState} from "react";
 import {testProps} from "../utils/test-utils";
 
-function GoalInput(props) {
-    const [enterGoalTxt, setEnterGoalTxt] = useState('')
+function EntityInput(props) {
+    const [enterEntityTxt, setEnterEntityTxt] = useState('')
 
-    const goalInputHandler = (txt) => {
-        setEnterGoalTxt(txt)
+    const entityInputHandler = (entityText) => {
+        setEnterEntityTxt(entityText)
     }
 
     function addGoalHandler() {
-        props.onAddGoal(enterGoalTxt)
-        setEnterGoalTxt('')
+        props.onAddEntity(enterEntityTxt)
+        setEnterEntityTxt('')
     }
 
     return (
         <Modal visible={props.isVisible} animationType={'slide'}>
             <View style={styles.inputContainer}>
                 <Image style={styles.image} source={require('../assets/omitrix-logo.png')}/>
-                <TextInput {...testProps('input-goal')} style={styles.textInput} placeholder={'Enter your course goal here'}
-                           onChangeText={goalInputHandler} value={enterGoalTxt}/>
+                <TextInput {...testProps('input-entity')} style={styles.textInput} placeholder={'Enter your entity here'}
+                           onChangeText={entityInputHandler} value={enterEntityTxt}/>
                 <View style={styles.buttonContainer}>
-                    <View style={styles.button}><Button title={'Add Goal'} onPress={addGoalHandler}
+                    <View style={styles.button}><Button title={'Add'} onPress={addGoalHandler}
                                                         color='#EE6B6E'/></View>
-                    <View style={styles.button}><Button title={'Clear All'} onPress={props.onClearGoals}/></View>
+                    <View style={styles.button}><Button title={'Clear All'} onPress={props.onClearEntities}/></View>
                     <View style={styles.button}><Button title={'Close'} onPress={props.onDismiss}/></View>
                 </View>
             </View>
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default GoalInput
+export default EntityInput

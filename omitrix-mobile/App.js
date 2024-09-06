@@ -1,13 +1,11 @@
 import {useState} from 'react';
-import {StatusBar} from 'expo-status-bar';
-import {Button, FlatList, Modal, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
-import {SHA256} from 'crypto-js';
-import GoalItem from "./components/GoalItem";
-import GoalInput from "./components/GoalInput";
+import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import EntityItem from "./components/EntityItem";
+import EntityInput from "./components/EntityInput";
 
 export default function App() {
-    const [goals, setGoals] = useState([]);
-    const [goalModalVisible, setGoalModalVisible] = useState(false);
+    const [entities, setEntities] = useState([]);
+    const [entityModalVisible, setEntityModalVisible] = useState(false);
 
     function generateRandomString(length) {
         let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,40 +16,40 @@ export default function App() {
         return result;
     }
 
-    function addGoalHandler(enterGoalTxt) {
-        setGoals(currentGoals => [...currentGoals, {
-            text: enterGoalTxt,
+    function addEntityHandler(enteredTxt) {
+        setEntities(currentEntities => [...currentEntities, {
+            text: enteredTxt,
             id: generateRandomString(5)
         }])
-        setGoalModalVisible(false)
+        setEntityModalVisible(false)
     }
 
-    function clearGoals() {
-        setGoals([])
+    function clearEntities() {
+        setEntities([])
     }
 
-    function deleteGoalHandler(id) {
-        setGoals(currentGoals => currentGoals.filter(goal => goal.id !== id))
+    function deleteEntityHandler(id) {
+        setEntities(currentEntities => currentEntities.filter(entity => entity.id !== id))
     }
 
-    function addNewGoalHandler() {
-        setGoalModalVisible(true)
+    function addNewEntityHandler() {
+        setEntityModalVisible(true)
     }
 
     function dismissModal() {
-        setGoalModalVisible(false)
+        setEntityModalVisible(false)
     }
 
     return (
         <View style={styles.appContainer}>
-            <Button title={'ADD NEW GOAL'} onPress={addNewGoalHandler} color='#EE6B6E'/>
-            <GoalInput isVisible={goalModalVisible} onAddGoal={addGoalHandler} onClearGoals={clearGoals} onDismiss={dismissModal}/>
+            <Button title={'ADD NEW ENTITY'} onPress={addNewEntityHandler} color='#EE6B6E'/>
+            <EntityInput isVisible={entityModalVisible} onAddEntity={addEntityHandler} onClearEntities={clearEntities} onDismiss={dismissModal}/>
             <View style={styles.listItems}>
-                <Text>#List of goals</Text>
+                <Text>#List of entities</Text>
                 <FlatList
-                    data={goals}
+                    data={entities}
                     renderItem={itemData =>
-                        <GoalItem index={itemData.index} value={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler}/>
+                        <EntityItem index={itemData.index} value={itemData.item.text} id={itemData.item.id} onDelete={deleteEntityHandler}/>
                     }
                     keyExtractor={(item, index) => item.id}
                     alwaysBounceVertical={false}

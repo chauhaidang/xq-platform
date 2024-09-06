@@ -6,6 +6,6 @@
 export function testProps(value) {
    return {
        testID: value,
-       accessibilityLabel: value
+       id: value
    }
 }
