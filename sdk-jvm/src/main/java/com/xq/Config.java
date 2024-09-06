@@ -11,6 +11,7 @@ public class Config {
     private String mobilePlatformVersion;
     private String mobileDeviceName;
     private String mobileAppWaitActivity;
+    private String mobileAppPackage;
     private int mobileCmdTimeout;
     private String mobileAppiumUrl;
     private String mobileIOSAppPath;

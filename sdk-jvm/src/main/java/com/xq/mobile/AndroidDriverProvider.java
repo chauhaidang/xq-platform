@@ -38,6 +38,7 @@ public class AndroidDriverProvider implements WebDriverProvider {
         options.setOrientation(ScreenOrientation.PORTRAIT);
         options.setAutomationName(Constant.ANDROID_AUTOMATION_NAME);
         options.setAppWaitActivity(config.getMobileAppWaitActivity());
+        options.setAppPackage(config.getMobileAppPackage());
         options.setNewCommandTimeout(Duration.ofSeconds(config.getMobileCmdTimeout()));
 
         try {

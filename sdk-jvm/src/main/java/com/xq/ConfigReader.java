@@ -63,11 +63,12 @@ public class ConfigReader {
 
             conf.setMobilePlatform(readConfigValue(props, "mobile.platform"));
             conf.setMobilePlatformVersion(readConfigValue(props, "mobile.platformVersion"));
-            conf.setMobileAppWaitActivity(readConfigValue(props, "mobile.appWaitActivity"));
             conf.setMobileAppiumUrl(readConfigValue(props, "mobile.appiumUrl"));
             conf.setMobileCmdTimeout(Integer.parseInt(readConfigValue(props, "mobile.cmdTimeout")));
 
             //Android
+            conf.setMobileAppWaitActivity(readConfigValue(props, "mobile.appWaitActivity"));
+            conf.setMobileAppPackage(readConfigValue(props, "mobile.appPackage"));
             conf.setMobileAndroidAppPath(
                     isKeyExisting(props, "mobile.androidAppPath") ?
                             readConfigValue(props, "mobile.androidAppPath") : Constant.DEFAULT_ANDROID_APP_PATH);
