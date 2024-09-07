@@ -12,6 +12,9 @@ public class AccountsContants {
     public static final String STATUS_200 = "200";
     public static final String MSG_200 = "Request processed successfully";
     public static final String STATUS_500 = "500";
+    public static final String STATUS_417 = "417";
     public static final String MSG_500 = "An error occurred. Please try again or contact product support";
     public static final String MSG_DEL_ACCOUNT_SUCCESS = "Account deleted successfully";
+    public static final String MSG_417_UPDATE = "Update operation failed. Please try again or contact product support";
+    public static final String MSG_417_DELETE = "Delete operation failed. Please try again or contact product support";
 }

@@ -85,6 +85,10 @@ public class AccountsController {
                     description = "Http status success"
             ),
             @ApiResponse(
+                    responseCode = "417",
+                    description = "Expectation failed"
+            ),
+            @ApiResponse(
                     responseCode = "500",
                     description = "Http status internal server error - can not update an account",
                     content = @Content(
@@ -101,8 +105,8 @@ public class AccountsController {
                         .status(HttpStatus.OK)
                         .body(new ResponseDto(AccountsContants.STATUS_200, AccountsContants.MSG_200)) :
                 ResponseEntity
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDto(AccountsContants.STATUS_500, AccountsContants.MSG_500));
+                        .status(HttpStatus.EXPECTATION_FAILED)
+                        .body(new ResponseDto(AccountsContants.STATUS_417, AccountsContants.MSG_417_UPDATE));
     }
 
     @Operation(
@@ -113,6 +117,10 @@ public class AccountsController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Http status success"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Expectation failed"
             ),
             @ApiResponse(
                     responseCode = "500",
@@ -133,7 +141,7 @@ public class AccountsController {
                         .status(HttpStatus.OK)
                         .body(new ResponseDto(AccountsContants.STATUS_200, AccountsContants.MSG_DEL_ACCOUNT_SUCCESS)) :
                 ResponseEntity
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ResponseDto(AccountsContants.STATUS_500, AccountsContants.MSG_500));
+                        .status(HttpStatus.EXPECTATION_FAILED)
+                        .body(new ResponseDto(AccountsContants.STATUS_417, AccountsContants.MSG_417_DELETE));
     }
 }
