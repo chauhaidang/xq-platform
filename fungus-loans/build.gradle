@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.xq'
-version = '1.0.1'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -27,9 +27,10 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
 }
 
+
 //Extension configuration
 unitTest {
-    path = "com.xq.accounts.unit.*"
+    path = "com.xq.loans.unit.*"
 }
 
 sourceSets {
@@ -54,7 +55,7 @@ tasks.withType(Test).configureEach {
 
 tasks.named('test') {
     filter {
-        includeTestsMatching("com.xq.accounts.unit.*")
+        includeTestsMatching("com.xq.loans.unit.*")
     }
 }
 
@@ -62,7 +63,7 @@ tasks.register('msIntTest', Test) {
     group = "xq"
     description = "run micro-service integration testing"
     filter {
-        includeTestsMatching("com.xq.accounts.integration.*")
+        includeTestsMatching("com.xq.loans.integration.*")
     }
 }
 
@@ -70,7 +71,7 @@ tasks.register("msCompTest", Test) {
     group = "xq"
     description = "run micro-service component testing"
     filter {
-        includeTestsMatching("com.xq.accounts.component.*")
+        includeTestsMatching("com.xq.loans.component.*")
     }
     outputs.upToDateWhen { false }
     systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'

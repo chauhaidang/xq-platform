@@ -5,6 +5,8 @@
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.6/samples
  */
 
+version = '1.0.0'
+
 ext {
     springboot_version = '3.3.0'
     lombok_version = '1.18.30'
