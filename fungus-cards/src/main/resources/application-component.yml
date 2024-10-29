@@ -1,10 +1,10 @@
 server:
-  port: 8020
+  port: 8031
 spring:
   application:
-    name: xq-svc-loans
+    name: xq-svc-cards
   datasource:
-    url: jdbc:h2:mem:xq-svc-loans-db
+    url: jdbc:h2:mem:xq-svc-cards-db
     driver-class-name: org.h2.Driver
     username: sa
     password:

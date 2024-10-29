@@ -31,3 +31,6 @@ dist/
 xq.app
 xq.app/
 xq.apk
+
+component.log
+component.pid

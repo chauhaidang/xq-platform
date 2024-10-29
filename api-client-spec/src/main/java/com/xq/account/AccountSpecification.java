@@ -1,8 +1,6 @@
 package com.xq.account;
 
-import com.intuit.karate.Http;
 import com.intuit.karate.Json;
-import com.intuit.karate.http.Response;
 import com.xq.ConfigReader;
 import com.xq.Dto;
 import io.restassured.RestAssured;
@@ -13,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.security.SecureRandom;
-import java.util.Random;
 
 @NoArgsConstructor
 @Data
@@ -51,9 +48,13 @@ public class AccountSpecification {
                 RestAssured.given().baseUri(endpoint).basePath("/api/accounts/create")
                         .contentType(ContentType.JSON).body(body.toString()).log().all()
         );
-        ValidatableResponse res = getRequestSpecification()
-                .post().then().log().all();
+        ValidatableResponse res = getRequestSpecification().post().then().log().all();
         return new Dto.AccountJson(
-                account.name(), account.email(), account.mobileNumber(), body, Json.of(res.extract().response().asString()), res.extract().statusCode());
+                account.name(),
+                account.email(),
+                account.mobileNumber(),
+                body,
+                Json.of(res.extract().response().asString()),
+                res.extract().statusCode());
     }
 }
