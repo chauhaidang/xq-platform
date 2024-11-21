@@ -27,3 +27,8 @@ tasks.register("prepareIOSApp", Copy.class) {
     from './omitrix-mobile/ios/build/Products/Release-iphonesimulator/omitrixmobile.app/'
     into './sunstrike/src/test/resources/xq.app'
 }
+
+tasks.register("runStub", Exec.class) {
+    group 'xq'
+    commandLine 'sh', '-c', 'cd ./stubby-v1 && camouflage -c config.yml'
+}
