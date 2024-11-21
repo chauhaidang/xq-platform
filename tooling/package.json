@@ -1,0 +1,14 @@
+{
+  "name": "xq-toolings",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:chauhaidang/xq-toolings.git",
+  "author": "chauhaidang1 <chauhaidang1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pactum": "^3.7.3"
+  },
+  "scripts": {
+    "try": "node poc/$POC/main.js"
+  }
+}

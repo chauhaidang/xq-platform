@@ -1,0 +1,19 @@
+meta {
+  name: delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{host}}/api/loans/delete?mobileNumber=4391291022
+  body: none
+  auth: none
+}
+
+params:query {
+  mobileNumber: 4391291022
+}
+
+headers {
+  accept: application/json
+}
