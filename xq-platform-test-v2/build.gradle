@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.xq'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    runtimeOnly(platform("com.xq:platform"))
+    annotationProcessor(platform("com.xq:platform"))
+    compileOnly(platform("com.xq:platform"))
+    implementation(platform("com.xq:platform"))
+    testImplementation(platform("com.xq:platform"))
+
+    annotationProcessor("org.projectlombok:lombok")
+}

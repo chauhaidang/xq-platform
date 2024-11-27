@@ -42,3 +42,5 @@ include 'sunstrike'
 include 'fungus-accounts'
 include 'fungus-loans'
 include 'fungus-cards'
+include 'xq-platform-test-v2'
+
