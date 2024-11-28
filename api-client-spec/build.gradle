@@ -6,6 +6,6 @@ group = 'com.xq'
 version = '1.0.0'
 
 dependencies {
-    implementation(project ':sdk-jvm')
+    implementation(project ':jvm-kit-common')
     implementation 'io.rest-assured:rest-assured:5.5.0'
 }

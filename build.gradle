@@ -32,3 +32,8 @@ tasks.register("runStub", Exec.class) {
     group 'xq'
     commandLine 'sh', '-c', 'cd ./stubby-v1 && camouflage -c config.yml'
 }
+
+tasks.register("platformTestV1", Exec.class) {
+    group 'xq'
+    commandLine 'sh', '-c', 'cd ./node-platform-test && yarn t'
+}

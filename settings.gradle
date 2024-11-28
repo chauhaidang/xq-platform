@@ -36,7 +36,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = 'xq-platform'
-include 'sdk-jvm'
+include 'jvm-kit-common'
 include 'api-client-spec'
 include 'sunstrike'
 include 'fungus-accounts'
