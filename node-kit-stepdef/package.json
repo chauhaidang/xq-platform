@@ -13,6 +13,6 @@
     "@cucumber/cucumber": "11.0.1"
   },
   "scripts": {
-    "i": "cd ../kit-common && yarn i && cd ../kit-stepdef && yarn install --force"
+    "i": "cd ../node-kit-common && yarn i && cd  && yarn install --force"
   }
 }
