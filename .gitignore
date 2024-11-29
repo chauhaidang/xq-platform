@@ -36,3 +36,5 @@ component.log
 component.pid
 
 cucumber-report.html
+
+target
