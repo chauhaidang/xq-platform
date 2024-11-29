@@ -16,6 +16,9 @@ dependencies {
     api "org.junit.jupiter:junit-jupiter"
     api "org.junit.jupiter:junit-jupiter-api"
     api "org.junit.jupiter:junit-jupiter-engine"
+    api "org.junit.vintage:junit-vintage-engine"
+    api "org.junit.platform:junit-platform-suite:1.11.3"
+    api "org.junit.platform:junit-platform-launcher:1.11.3"
     api "org.springframework.boot:spring-boot-starter-actuator:$springboot_version"
     api "org.springframework.boot:spring-boot-starter-data-jpa:$springboot_version"
     api "org.springframework.boot:spring-boot-starter-validation:$springboot_version"
@@ -26,6 +29,9 @@ dependencies {
     api "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
     api "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
     api "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+    api "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}"
+    api "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+    api "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
 }
 
 group = "com.xq"
