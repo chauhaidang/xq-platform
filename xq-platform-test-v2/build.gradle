@@ -43,6 +43,11 @@ test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
     systemProperties System.getProperties()
+    systemProperty("cucumber.execution.parallel.enabled",true)
+    systemProperty("cucumber.execution.parallel.config.strategy","fixed")
+    systemProperty("cucumber.execution.parallel.config.fixed.parallelism",3)
+    systemProperty("cucumber.execution.parallel.config.fixed.max-pool-size",3)
+    systemProperty("cucumber.plugin","io.cucumber.core.plugin.SerenityReporterParallel")
 }
 
 gradle.startParameter.continueOnFailure = true
