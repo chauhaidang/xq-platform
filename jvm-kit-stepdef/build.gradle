@@ -1,9 +1,7 @@
 plugins {
-    id "net.serenity-bdd.serenity-gradle-plugin" version "4.2.7"
     id 'java'
     id 'idea'
 }
-defaultTasks 'clean', 'test', 'aggregate'
 
 group = 'com.xq'
 version = '1.0.0'
@@ -23,12 +21,21 @@ ext {
     assertj_core_version="3.23.1"
 }
 dependencies {
+    implementation(platform("com.xq:platform"))
+    implementation "net.serenity-bdd:serenity-rest-assured"
+    implementation "net.serenity-bdd:serenity-core:${serenity_version}"
+    implementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenity_version}"
+    implementation "org.junit.platform:junit-platform-launcher:${junit_platform_launcher_version}"
+    implementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
+    implementation "org.junit.platform:junit-platform-suite:${junit_platform_suite_version}"
+    implementation "org.junit.jupiter:junit-jupiter-engine:${junit_jupiter_engine_version}"
+    implementation "org.junit.vintage:junit-vintage-engine:${junit_vintage_engine_version}"
+
     testImplementation(platform("com.xq:platform"))
-    testImplementation  "net.serenity-bdd:serenity-rest-assured"
+    testImplementation "net.serenity-bdd:serenity-rest-assured"
     testImplementation "net.serenity-bdd:serenity-core:${serenity_version}"
     testImplementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
-    testImplementation "net.serenity-bdd:serenity-screenplay:${serenity_version}"
-    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenity_version}"
     testImplementation "net.serenity-bdd:serenity-ensure:${serenity_version}"
     testImplementation "org.junit.platform:junit-platform-launcher:${junit_platform_launcher_version}"
     testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
@@ -37,29 +44,4 @@ dependencies {
     testImplementation "org.junit.vintage:junit-vintage-engine:${junit_vintage_engine_version}"
     implementation "ch.qos.logback:logback-classic:${logback_classic_version}"
     testImplementation "org.assertj:assertj-core:${assertj_core_version}"
-
-    implementation project(':jvm-kit-stepdef')
 }
-
-test {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-    systemProperties System.getProperties()
-    systemProperty("cucumber.execution.parallel.enabled",true)
-    systemProperty("cucumber.execution.parallel.config.strategy","fixed")
-    systemProperty("cucumber.execution.parallel.config.fixed.parallelism",3)
-    systemProperty("cucumber.execution.parallel.config.fixed.max-pool-size",3)
-    systemProperty("cucumber.plugin","io.cucumber.core.plugin.SerenityReporterParallel")
-    test.outputs.upToDateWhen {false}
-}
-
-gradle.startParameter.continueOnFailure = true
-
-serenity {
-    reports = ["single-page-html"]
-
-    // // Specify the root package of any JUnit acceptance tests
-    testRoot="com.xq"
-}
-
-test.finalizedBy(aggregate)

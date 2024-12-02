@@ -1,5 +1,6 @@
-package com.xq.stepdefinitions;
-import com.xq.PetApi;
+package com.xq.reststep.stepdefinitions;
+
+import com.xq.reststep.PetApi;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
