@@ -8,7 +8,8 @@
     "bip": "expo prebuild --no-install --platform ios",
     "bi": "cd ios && pod install && sh ./build-sim.sh && cd ..",
     "bap": "expo prebuild --no-install --platform android",
-    "ba": "cd android && ./gradlew :app:assembleRelease && cd .."
+    "ba": "cd android && ./gradlew :app:assembleRelease && cd ..",
+    "i": "cd ../node-kit-common && yarn i && cd ../omitrix-mobile && yarn install --force"
   },
   "dependencies": {
     "@expo/metro-runtime": "3.2.3",
@@ -20,7 +21,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
-    "react-native-web": "0.19.10"
+    "react-native-web": "0.19.10",
+    "kit-common": "../node-kit-common"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
