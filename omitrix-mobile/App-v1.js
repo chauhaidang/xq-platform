@@ -2,24 +2,16 @@ import { useState } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import EntityItem from "./components/EntityItem";
 import EntityInput from "./components/EntityInput";
+import { randomByLength } from 'kit-common';
 
 export default function App() {
     const [entities, setEntities] = useState([]);
     const [entityModalVisible, setEntityModalVisible] = useState(false);
 
-    function generateRandomString(length) {
-        let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        for (let i = 0; i < length; i++) {
-            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-        }
-        return result;
-    }
-
     function addEntityHandler(enteredTxt) {
         setEntities(currentEntities => [...currentEntities, {
             text: enteredTxt,
-            id: generateRandomString(5)
+            id: randomByLength(5)
         }])
         setEntityModalVisible(false)
     }
