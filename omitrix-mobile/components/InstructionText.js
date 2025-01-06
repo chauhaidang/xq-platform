@@ -3,7 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import CustomColors from '../constants/colors';
 
 const InstructionText = ({ children, style }) => {
-    return <Text style={{ ...styles.instructionText, ...style }}>{children}</Text>;
+    return <Text style={[styles.instructionText, style]}> {children}</Text >;
 };
 
 const styles = StyleSheet.create({

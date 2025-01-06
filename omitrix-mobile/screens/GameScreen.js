@@ -6,6 +6,7 @@ import PrimaryButton from "../components/PrimaryButton"
 import Card from '../components/Card'
 import InstructionText from '../components/InstructionText'
 import { randomBetween } from 'kit-common'
+import { Ionicons } from '@expo/vector-icons'
 
 let minBoundary = 1
 let maxBoundary = 100
@@ -43,10 +44,18 @@ function GameScreen({ userNumber, onGameOver }) {
       <Title>Opponent's guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText>Higher or Lower</InstructionText>
-        <View>
-          <PrimaryButton onPress={() => nextGuessHandler('lower')}>-</PrimaryButton>
-          <PrimaryButton onPress={() => nextGuessHandler('greater')}>+</PrimaryButton>
+        <InstructionText style={styles.instructionText}>Higher or Lower</InstructionText>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={() => nextGuessHandler('lower')}>
+              <Ionicons name="remove-circle-outline" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={() => nextGuessHandler('greater')}>
+              <Ionicons name="add-circle-outline" size={24} color="white" />
+            </PrimaryButton>
+          </View>
         </View>
       </Card>
     </View>
@@ -59,5 +68,14 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24
-  }
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+  instructionText: {
+    margin: 24
+  },
 })
