@@ -12,17 +12,21 @@
     "i": "cd ../node-kit-common && yarn i && cd ../omitrix-mobile && yarn install --force"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
     "@expo/metro-runtime": "3.2.3",
     "crypto-js": "4.2.0",
     "expo": "51.0.31",
+    "expo-app-loading": "2.1.1",
     "expo-dev-client": "4.0.25",
+    "expo-font": "~12.0.9",
     "expo-linear-gradient": "13.0.2",
+    "expo-splash-screen": "~0.27.7",
     "expo-status-bar": "1.12.1",
+    "kit-common": "../node-kit-common",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
-    "react-native-web": "0.19.10",
-    "kit-common": "../node-kit-common"
+    "react-native-web": "0.19.10"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
