@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     color: 'black',
     marginVertical: 8,
-    fontWeight: 'bold',
+    fontFamily: 'open-sans',
     textAlign: 'center',
   },
   buttonsContainer: {
