@@ -1,5 +1,6 @@
-import {Text, View, StyleSheet, Pressable} from "react-native";
-import {testProps} from "../utils/test-utils";
+import { Text, View, StyleSheet, Pressable } from "react-native";
+import { testProps } from "../utils/test-utils";
+import CustomColors from "../constants/colors";
 
 function EntityItem(props) {
     const index = props.index
@@ -12,7 +13,7 @@ function EntityItem(props) {
                 onPress={() => {
                     props.onDelete(props.id)
                 }}
-                style={({pressed}) => pressed && styles.iosRipple}
+                style={({ pressed }) => pressed && styles.iosRipple}
             >
                 <Text style={styles.entityItemText}>
                     {content}
@@ -24,24 +25,22 @@ function EntityItem(props) {
 
 const styles = StyleSheet.create({
     entityItem: {
-        backgroundColor: '#FBFBFB',
-        borderWidth: 1,
-        borderColor: '#EE6B6E',
-        borderStyle: 'solid',
-        borderCurve: 'circular',
-        marginTop: 5,
-        borderRadius: 5,
+        backgroundColor: '#fdfdfd',
+        padding: 15,
+        borderBottomWidth: 0.5,
+        borderStyle: 'dashed',
     },
     entityItemText: {
-        padding: 5,
-        color: 'black'
+        fontSize: 20,
+        fontFamily: 'open-sans',
+        fontStyle: 'italic',
     },
     androidRipple: {
-        color: '#EE6B6E'
+        color: CustomColors.ripple
     },
     iosRipple: {
         opacity: 0.5,
-        backgroundColor: '#EE6B6E'
+        backgroundColor: CustomColors.ripple
     }
 })
 

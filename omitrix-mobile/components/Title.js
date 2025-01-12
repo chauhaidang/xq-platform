@@ -9,12 +9,15 @@ export default Title
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 24,
+        fontSize: 26,
         fontFamily: 'open-sans-bold',
+        fontWeight: 'semibold',
         color: CustomColors.textTitle,
         textAlign: 'center',
-        borderWidth: 2,
         borderColor: CustomColors.borderTitle,
-        padding: 20
+        padding: 5,
+        borderBottomWidth: 1,
+        marginTop: 10,
+        fontStyle: 'normal',
     }
 })
