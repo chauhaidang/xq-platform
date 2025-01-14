@@ -11,7 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 let minBoundary = 1
 let maxBoundary = 100
 
-function GameScreen({ userNumber, onGameOver }) {
+function GameScreen({ userNumber, onGameOver, onGuessEvent }) {
   const initialGuess = randomBetween(1, 100, userNumber)
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
@@ -20,6 +20,12 @@ function GameScreen({ userNumber, onGameOver }) {
       onGameOver()
     }
   }, [currentGuess, useEffect, onGameOver])
+
+  //This effect will run only once when the component is mounted the first time
+  useEffect(() => {
+    minBoundary = 1
+    maxBoundary = 100
+  }, [])
 
   function nextGuessHandler(direction) {
     if (direction === "lower" && currentGuess < userNumber
@@ -37,6 +43,7 @@ function GameScreen({ userNumber, onGameOver }) {
     }
     const newRandNum = randomBetween(minBoundary, maxBoundary, currentGuess)
     setCurrentGuess(newRandNum)
+    onGuessEvent()
   }
 
   return (
