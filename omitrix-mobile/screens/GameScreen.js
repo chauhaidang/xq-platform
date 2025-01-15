@@ -13,14 +13,14 @@ import GuessLogItem from '../components/GuessLogItem'
 let minBoundary = 1
 let maxBoundary = 100
 
-function GameScreen({ userNumber, onGameOver, onGuessEvent }) {
+function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = randomBetween(1, 100, userNumber)
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
   const [rounds, setRounds] = useState([])
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver()
+      onGameOver(rounds.length)
     }
   }, [currentGuess, useEffect, onGameOver])
 
@@ -48,7 +48,6 @@ function GameScreen({ userNumber, onGameOver, onGuessEvent }) {
     const newRandNum = randomBetween(minBoundary, maxBoundary, currentGuess)
     setCurrentGuess(newRandNum)
     setRounds(currentRounds => [newRandNum, ...currentRounds])
-    onGuessEvent(rounds)
   }
 
   const guessRoundsListLength = rounds.length
