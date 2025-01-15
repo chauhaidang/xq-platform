@@ -2,12 +2,17 @@ import { View, Text, StyleSheet } from "react-native";
 import Title from "../components/Title";
 import List from "../components/List";
 import CustomColors from "../constants/colors";
+import EntityItem from "../components/EntityItem";
+
+const renderEntityHandler = (itemData) => (
+    <EntityItem index={itemData.index} value={itemData.item.text} onDelete={() => { }} />
+);
 
 export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <Title>Home</Title>
-            <List />
+            <List input={[]} renderHandler={renderEntityHandler} />
             <View style={styles.footer}>
                 <Text style={styles.text}>Navigation</Text>
             </View>

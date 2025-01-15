@@ -65,8 +65,8 @@ export default function App() {
     setGuessRounds(0)
   }
 
-  function onGuessHandler() {
-    setGuessRounds((currentRounds) => currentRounds + 1)
+  function onGuessHandler(rounds) {
+    setGuessRounds(rounds.length)
   }
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
