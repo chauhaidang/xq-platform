@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
     entityItem: {
         backgroundColor: '#fdfdfd',
         padding: 15,
-        borderBottomWidth: 0.5,
-        borderStyle: 'dashed',
+        borderBottomWidth: 0.3,
+        borderStyle: 'solid',
+        borderColor: CustomColors.border
     },
     entityItemText: {
         fontSize: 20,
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
         color: CustomColors.ripple
     },
     iosRipple: {
-        opacity: 0.5,
-        backgroundColor: CustomColors.ripple
+        opacity: 0.3,
+        backgroundColor: CustomColors.ripple,
     }
 })
 

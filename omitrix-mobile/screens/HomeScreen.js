@@ -12,7 +12,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <Title>Home</Title>
-            <List input={[]} renderHandler={renderEntityHandler} />
+            <List input={['ABSAD ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS']} renderHandler={renderEntityHandler} />
             <View style={styles.footer}>
                 <Text style={styles.text}>Navigation</Text>
             </View>
