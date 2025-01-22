@@ -1,4 +1,4 @@
-import { Text, StyleSheet } from "react-native"
+import { Text, StyleSheet } from 'react-native'
 import CustomColors from '../constants/colors'
 
 function Title({ children }) {
@@ -19,5 +19,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginTop: 10,
         fontStyle: 'normal',
-    }
+        maxWidth: '80%',
+        minWidth: 300,
+    },
 })

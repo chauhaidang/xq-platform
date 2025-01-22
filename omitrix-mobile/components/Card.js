@@ -1,5 +1,7 @@
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, View, Dimensions } from "react-native"
 import CustomColors from "../constants/colors"
+import { metrics } from "../constants/device"
+
 
 function Card({ children }) {
     return (
@@ -11,12 +13,14 @@ function Card({ children }) {
 
 export default Card
 
+const appScreenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
     card: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 36,
-        marginHorizontal: 25,
+        marginTop: appScreenWidth < metrics.screenWidth ? 28 : 36,
+        marginHorizontal: 24,
         padding: 16,
         backgroundColor: CustomColors.background,
         borderRadius: 8,
