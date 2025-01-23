@@ -9,10 +9,14 @@ const renderEntityHandler = (itemData) => (
 );
 
 export default function HomeScreen() {
+    const mockData = []
+    for (let i = 1; i <= 20; i++) {
+        mockData.push('Requirement description ' + i)
+    }
     return (
         <View style={styles.container}>
             <Title>Home</Title>
-            <List input={['ABSAD ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS', 'ABSAD', 'ASDASDASDAKSKDJAS', 'ASDASDASDAKSKDJAS']} renderHandler={renderEntityHandler} />
+            <List input={mockData} renderHandler={renderEntityHandler} />
             <View style={styles.footer}>
                 <Text style={styles.text}>Navigation</Text>
             </View>

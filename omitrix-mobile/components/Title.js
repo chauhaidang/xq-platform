@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginTop: 10,
         fontStyle: 'normal',
-        maxWidth: '80%',
+        maxWidth: '100%',
         minWidth: 300,
     },
 })
