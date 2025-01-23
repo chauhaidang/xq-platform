@@ -1,4 +1,4 @@
-import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native'
+import { ImageBackground, SafeAreaView, StyleSheet, StatusBar } from 'react-native'
 import StartGameScreen from './screens/StartGameScreen'
 import GameScreen from './screens/GameScreen'
 import GameOverScreen from "./screens/GameOverScreen"
@@ -77,18 +77,21 @@ export default function App() {
   }
 
   return (
-    <LinearGradient onLayout={onLayoutRootView} colors={['#EE6B6E', '#644b64']} style={styles.rootScreen}>
-      <ImageBackground
-        source={require('./assets/images/background-image-2.jpg')}
-        resizeMode={'cover'}
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
-      >
-        <SafeAreaView style={styles.rootScreen}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar barStyle="dark" />
+      <LinearGradient onLayout={onLayoutRootView} colors={['#EE6B6E', '#644b64']} style={styles.rootScreen}>
+        <ImageBackground
+          source={require('./assets/images/background-image-2.jpg')}
+          resizeMode={'cover'}
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   )
 }
 
