@@ -65,6 +65,7 @@ public class ConfigReader {
             conf.setMobilePlatformVersion(readConfigValue(props, "mobile.platformVersion"));
             conf.setMobileAppiumUrl(readConfigValue(props, "mobile.appiumUrl"));
             conf.setMobileCmdTimeout(Integer.parseInt(readConfigValue(props, "mobile.cmdTimeout")));
+            conf.setMobileServerInstallTimeout(Integer.parseInt(readConfigValue(props, "mobile.serverInstallTimeout")));
 
             //Android
             conf.setMobileAppWaitActivity(readConfigValue(props, "mobile.appWaitActivity"));

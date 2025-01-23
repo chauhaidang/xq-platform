@@ -1,4 +1,3 @@
-import com.codeborne.selenide.WebElementCondition;
 import com.xq.mobile.AndroidTestFixture;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;

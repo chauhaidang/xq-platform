@@ -40,6 +40,8 @@ public class AndroidDriverProvider implements WebDriverProvider {
         options.setAppWaitActivity(config.getMobileAppWaitActivity());
         options.setAppPackage(config.getMobileAppPackage());
         options.setNewCommandTimeout(Duration.ofSeconds(config.getMobileCmdTimeout()));
+        options.setUiautomator2ServerInstallTimeout(Duration.ofSeconds(config.getMobileServerInstallTimeout()));
+
 
         try {
             return new AndroidDriver(new URL(config.getMobileAppiumUrl()), options);
