@@ -1,4 +1,4 @@
-import com.xq.mobile.IOSTestFixture;
+import com.xq.mobile.BaseTestFixture;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.appium.SelenideAppium.$;
 
-public class IOSTest extends IOSTestFixture {
+public class IOSTest extends BaseTestFixture {
     By inputEntity = AppiumBy.accessibilityId("input-entity");
     By buttonAddNewEntity = AppiumBy.accessibilityId("ADD NEW ENTITY");
     By buttonAdd = AppiumBy.accessibilityId("Add");

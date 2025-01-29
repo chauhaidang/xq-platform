@@ -1,4 +1,4 @@
-import com.xq.mobile.AndroidTestFixture;
+import com.xq.mobile.BaseTestFixture;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.appium.SelenideAppium.$;
 
-public class AndroidTest extends AndroidTestFixture {
+public class AndroidTest extends BaseTestFixture {
     By inputEntity = AppiumBy.xpath("//*[@resource-id='input-entity']");
     By buttonAddNewEntity = AppiumBy.accessibilityId("ADD NEW ENTITY");
     By buttonAdd = AppiumBy.accessibilityId("ADD");
