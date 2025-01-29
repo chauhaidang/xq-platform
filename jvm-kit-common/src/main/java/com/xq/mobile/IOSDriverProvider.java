@@ -2,7 +2,7 @@ package com.xq.mobile;
 
 import com.codeborne.selenide.WebDriverProvider;
 import com.xq.Config;
-import com.xq.ConfigReader;
+import com.xq.ConfigManager;
 import com.xq.Constant;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
@@ -25,8 +25,7 @@ public class IOSDriverProvider implements WebDriverProvider {
     @Override
     @CheckReturnValue
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        ConfigReader configReader = new ConfigReader();
-        Config config = configReader.loadConfig();
+        Config config = ConfigManager.getInstance().getConfig();
 
         File app = new File(Constant.USER_DIRECTORY + config.getMobileIOSAppPath());
         XCUITestOptions options = new XCUITestOptions();
@@ -37,6 +36,9 @@ public class IOSDriverProvider implements WebDriverProvider {
         options.setPlatformName("iOS");
         options.setUdid(config.getMobileDeviceUdid());
         options.setNewCommandTimeout(Duration.ofSeconds(config.getMobileCmdTimeout()));
+
+        options.setFullReset(false);
+        options.setNoReset(true);
 
         try {
             return new IOSDriver(new URL(config.getMobileAppiumUrl()), options);

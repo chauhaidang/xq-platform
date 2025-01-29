@@ -13,7 +13,7 @@ ext {
     junit_version = '5.10.0'
 }
 
-tasks.register("prepareAndroidApk", Copy.class) {
+tasks.register("prepareApk", Copy.class) {
     group 'xq'
     from './omitrix-mobile/android/app/build/outputs/apk/release/app-release.apk'
     into './sunstrike/src/test/resources'
@@ -22,7 +22,7 @@ tasks.register("prepareAndroidApk", Copy.class) {
     }
 }
 
-tasks.register("prepareIOSApp", Copy.class) {
+tasks.register("prepareApp", Copy.class) {
     group 'xq'
     from './omitrix-mobile/ios/build/Products/Release-iphonesimulator/omitrixmobile.app/'
     into './sunstrike/src/test/resources/xq.app'
