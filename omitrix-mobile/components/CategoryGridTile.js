@@ -1,12 +1,20 @@
 import { Pressable, StyleSheet, Text, View, Platform } from 'react-native'
 import CustomColors from '../constants/colors'
+import { useNavigation } from '@react-navigation/native'
+import { TITLES } from '../constants/screens'
 
-function CategoryGridTile({ title, color }) {
+function CategoryGridTile({ title, color, id }) {
+  const navigation = useNavigation()
   return (
     <View style={styles.gridItem}>
       <Pressable
         android_ripple={{ color: CustomColors.ripple }}
         style={({ pressed }) => [styles.button, pressed ? styles.buttonPressedIOS : null]}
+        onPress={() => {
+          navigation.navigate(TITLES.MEAL_OVERVIEW, {
+            categoryId: id,
+          })
+        }}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.heading}>{title}</Text>
