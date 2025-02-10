@@ -17,7 +17,6 @@ export default function App() {
         <Stack.Navigator
           initialRouteName={TITLES.CATEGORIES_OVERVIEW}
           screenOptions={{
-            title: TITLES.CATEGORIES_OVERVIEW,
             headerStyle: { backgroundColor: CustomColors.background },
             contentStyle: { backgroundColor: CustomColors.background },
             headerTintColor: 'black',
@@ -27,12 +26,12 @@ export default function App() {
           <Stack.Screen
             name={TITLES.MEAL_OVERVIEW}
             component={MealOverViewScreen}
-            options={{
+            options={() => ({
               title: TITLES.MEAL_OVERVIEW,
               headerStyle: { backgroundColor: CustomColors.background },
               contentStyle: { backgroundColor: CustomColors.background },
               headerTintColor: CustomColors.textTitle,
-            }}
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
