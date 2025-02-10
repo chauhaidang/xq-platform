@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, StatusBar, SafeAreaView } from 'react-native'
+import { StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import CategoriesScreen from './screens/CategoriesScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'

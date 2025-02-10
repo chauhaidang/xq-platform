@@ -2,14 +2,14 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { CATEGORIES, MEALS } from '../data/dummy-data'
 import InformativeItem from '../components/InformativeItem'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 
 function MealOverViewScreen({ navigation }) {
   const route = useRoute()
   const catId = route.params.categoryId
   const filteredMeals = MEALS.filter(meal => meal.categoryIds.includes(catId))
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     //Reset the route's title base on data hold in navigation obj
     const catTitle = CATEGORIES.find(category => category.id === catId).title
     navigation.setOptions({
