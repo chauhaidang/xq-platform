@@ -1,12 +1,21 @@
 import { Pressable, StyleSheet, Text, View, Image, Platform } from 'react-native'
 import CustomColors from '../constants/colors'
+import { useNavigation } from '@react-navigation/native'
+import { TITLES } from '../constants/screens'
 
-function InformativeItem({ title, imageUrl, duration, complexity, affordability }) {
+function InformativeItem({ id, title, imageUrl, duration, complexity, affordability }) {
+  const navigation = useNavigation()
+  function navigateToMealDetail() {
+    navigation.navigate(TITLES.MEAL_DETAIL, {
+      mealId: id,
+    })
+  }
   return (
     <View style={styles.container}>
       <Pressable
         android_ripple={{ color: CustomColors.ripple }}
         style={({ pressed }) => (pressed ? styles.buttonPressedIOS : null)}
+        onPress={navigateToMealDetail}
       >
         <View style={styles.innerContainer}>
           <Image source={{ uri: imageUrl }} style={styles.image} />

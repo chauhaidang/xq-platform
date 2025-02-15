@@ -20,6 +20,7 @@ function MealOverViewScreen({ navigation }) {
   function renderMealItem(itemData) {
     const item = itemData.item
     const mealProps = {
+      id: item.id,
       title: item.title,
       imageUrl: item.imageUrl,
       duration: item.duration,

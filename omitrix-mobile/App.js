@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MealOverViewScreen from './screens/MealOverViewScreen'
 import { TITLES } from './constants/screens'
 import CustomColors from './constants/colors'
+import MealDetailsScreen from './screens/MealDetailsScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -33,6 +34,7 @@ export default function App() {
               headerTintColor: CustomColors.textTitle,
             })}
           />
+          <Stack.Screen name={TITLES.MEAL_DETAIL} component={MealDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       {/*</SafeAreaView>*/}
