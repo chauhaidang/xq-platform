@@ -9,20 +9,14 @@ const renderEntityHandler = itemData => (
   <EntityItem index={itemData.item.id} value={itemData.item.text} onDelete={() => {}} />
 )
 
-export default function HomeScreen() {
+export default function TestPlanOverviewScreen() {
   const mockData = []
   for (let i = 1; i <= 20; i++) {
     mockData.push('Requirement description ' + i)
   }
   return (
     <View style={styles.container}>
-      <Title>Home</Title>
       <List input={mockData} renderHandler={renderEntityHandler} />
-      <View style={styles.footer}>
-        <Text {...testProps('test-data-footer')} style={styles.text}>
-          Navigation
-        </Text>
-      </View>
     </View>
   )
 }
@@ -30,7 +24,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: '5%',
   },
   footer: {
     fontSize: 20,
