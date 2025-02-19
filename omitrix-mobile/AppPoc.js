@@ -7,8 +7,9 @@ import HomeScreen from './screens/xq/HomeScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { TITLES } from './constants/screens'
-import CategoriesScreen from './screens/CategoriesScreen'
-import TestPlanOverviewScreen from './screens/TestPlanOverviewScreen'
+import TestPlansScreen from './screens/xq/TestPlansScreen'
+import TestCasesScreen from './screens/xq/TestCasesScreen'
+import TestReportsScreen from './screens/xq/TestReportsScreen'
 
 // Keep the splash screen visible while we fetch resources
 preventAutoHideAsync()
@@ -54,7 +55,7 @@ export default function App() {
     <>
       <StatusBar barStyle={'default'} />
       {/*<SafeAreaView style={styles.root} onLayout={onLayoutRootView}>*/}
-      <NavigationContainer>
+      <NavigationContainer onReady={onLayoutRootView}>
         <Stack.Navigator
           initialRouteName={TITLES.HOME}
           screenOptions={{
@@ -66,10 +67,13 @@ export default function App() {
               fontFamily: 'open-sans-bold',
               color: CustomColors.textTitle,
             },
+            headerBackAccessibilityLabel: 'back-button',
           }}
         >
           <Stack.Screen name={TITLES.HOME} component={HomeScreen} />
-          <Stack.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlanOverviewScreen} />
+          <Stack.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} />
+          <Stack.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} />
+          <Stack.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       {/*</SafeAreaView>*/}

@@ -2,7 +2,7 @@ import { StyleSheet, View, Dimensions, Text, Pressable, Platform } from 'react-n
 import CustomColors from '../constants/colors'
 import { common, ios } from '../constants/styles'
 import { useNavigation } from '@react-navigation/native'
-import { TITLES } from '../constants/screens'
+import { testProps } from '../utils/test-utils'
 
 function Card({ children }) {
   const navigation = useNavigation()
@@ -12,10 +12,10 @@ function Card({ children }) {
         android_ripple={styles.androidRipple}
         style={({ pressed }) => [{ flex: 1 }, pressed && ios.buttonPressed]}
         onPress={() => {
-          navigation.navigate(TITLES.TEST_PLAN_OVERVIEW, {})
+          navigation.navigate(children, {})
         }}
       >
-        <View style={styles.innerContainer}>
+        <View {...testProps(`card-${children}`)} style={styles.innerContainer}>
           <Text style={styles.heading}>{children}</Text>
         </View>
       </Pressable>
