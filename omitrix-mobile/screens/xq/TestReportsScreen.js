@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 function TestReportsScreen() {
   return (
     <View style={styles.root}>
-      <Text>Test Reports Is Coming Soon!</Text>
+      <Text>Test Reports Are Coming Soon!</Text>
     </View>
   )
 }
