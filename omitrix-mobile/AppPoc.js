@@ -61,13 +61,13 @@ export default function App() {
           screenOptions={{
             headerStyle: { backgroundColor: CustomColors.background },
             headerBackButtonDisplayMode: 'generic',
+            headerTitleAlign: 'center',
             headerTintColor: CustomColors.textTitle,
             headerTitleStyle: {
               fontSize: 26,
               fontFamily: 'open-sans-bold',
               color: CustomColors.textTitle,
             },
-            headerBackAccessibilityLabel: 'back-button',
           }}
         >
           <Stack.Screen name={TITLES.HOME} component={HomeScreen} />

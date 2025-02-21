@@ -4,16 +4,16 @@ import com.codeborne.selenide.appium.selector.CombinedBy;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.appium.AppiumSelectors.byName;
-import static com.codeborne.selenide.appium.AppiumSelectors.byText;
+import static com.xq.helper.PlatformLocator.byAndroidContentDesc;
+import static com.xq.helper.PlatformLocator.byVisibleText;
 
 public interface Header {
-    By LABEL_HOME = byName("Home");
-    By LABEL_TEST_PLANS = byName("Test Plans");
-    By LABEL_TEST_CASES = byName("Test Cases");
-    By LABEL_TEST_REPORTS = byName("Test Reports");
+    By LABEL_HOME = byVisibleText("Home");
+    By LABEL_TEST_PLANS = byVisibleText("Test Plans");
+    By LABEL_TEST_CASES = byVisibleText("Test Cases");
+    By LABEL_TEST_REPORTS = byVisibleText("Test Reports");
 
     CombinedBy BUTTON_BACK = CombinedBy
-            .android(AppiumBy.xpath("//*[@resource-id='back-button']"))
+            .android(byAndroidContentDesc("Navigate up"))
             .ios(AppiumBy.xpath("//XCUIElementTypeNavigationBar/XCUIElementTypeButton"));
 }
