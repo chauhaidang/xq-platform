@@ -1,12 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import HomeScreen from './screens/HomeScreen'
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native'
 import { loadAsync } from 'expo-font'
 import CustomColors from './constants/colors'
 import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen'
+import HomeScreen from './screens/xq/HomeScreen'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { TITLES } from './constants/screens'
+import TestPlansScreen from './screens/xq/TestPlansScreen'
+import TestCasesScreen from './screens/xq/TestCasesScreen'
+import TestReportsScreen from './screens/xq/TestReportsScreen'
 
 // Keep the splash screen visible while we fetch resources
 preventAutoHideAsync()
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -45,9 +52,32 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.root} onLayout={onLayoutRootView}>
-      <HomeScreen />
-    </SafeAreaView>
+    <>
+      <StatusBar barStyle={'default'} />
+      {/*<SafeAreaView style={styles.root} onLayout={onLayoutRootView}>*/}
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Stack.Navigator
+          initialRouteName={TITLES.HOME}
+          screenOptions={{
+            headerStyle: { backgroundColor: CustomColors.background },
+            headerBackButtonDisplayMode: 'generic',
+            headerTitleAlign: 'center',
+            headerTintColor: CustomColors.textTitle,
+            headerTitleStyle: {
+              fontSize: 26,
+              fontFamily: 'open-sans-bold',
+              color: CustomColors.textTitle,
+            },
+          }}
+        >
+          <Stack.Screen name={TITLES.HOME} component={HomeScreen} />
+          <Stack.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} />
+          <Stack.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} />
+          <Stack.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      {/*</SafeAreaView>*/}
+    </>
   )
 }
 

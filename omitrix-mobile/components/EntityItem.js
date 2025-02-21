@@ -6,7 +6,7 @@ function EntityItem(props) {
   const index = props.index
   const content = props.value
   return (
-    <View style={styles.entityItem}>
+    <View style={styles.rootContainer}>
       <View style={styles.entityItemContainer}>
         <Pressable
           {...testProps(`item-entity-${index}`)}
@@ -24,7 +24,7 @@ function EntityItem(props) {
 }
 
 const styles = StyleSheet.create({
-  entityItem: {
+  rootContainer: {
     flex: 1,
     marginVertical: 5,
     padding: 10,
