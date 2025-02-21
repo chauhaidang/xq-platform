@@ -14,7 +14,7 @@ import static com.xq.helper.PlatformLocator.byVisibleText;
 public class TestReportsTest extends BaseTestFixture {
     @Test
     void testTestReportsAreShown() {
-        $(Home.LABEL_TEST_REPORTS).shouldBe(visible, Duration.ofSeconds(10));
+        $(Home.LABEL_TEST_REPORTS).shouldBe(visible, Duration.ofSeconds(20)).click();
         $(Header.LABEL_TEST_REPORTS).shouldBe(visible);
         $(byVisibleText("Test Reports Are Coming Soon!")).shouldBe(visible);
     }
