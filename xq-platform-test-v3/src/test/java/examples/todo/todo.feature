@@ -20,7 +20,7 @@ Feature: To do feature
     Given path id
     When method get
     Then status 200
-    And match response == { "title": "#(firstTitle)", "completed": true, id: #(id) }
+    And match response == { "title": "#(firstTitle)", "completed": true, id: "#(id)" }
 
     * def newTitle = randomTitle(5)
     * def body =
