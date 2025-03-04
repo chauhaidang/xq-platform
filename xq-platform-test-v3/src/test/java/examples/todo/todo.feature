@@ -4,7 +4,7 @@ Feature: To do feature
     * url 'http://localhost:8080/api/todos'
 
   @impl
-  Scenario: create a todo
+  Scenario: create edit delete todos
     * def randomTitle =
       """
       function(max){ return "title-" + Math.floor(Math.random() * max) }
@@ -30,11 +30,28 @@ Feature: To do feature
         "completed": false
       }
       """
-    And request body
-    Then method post
-    And status 200
+    Given request body
+    When method post
+    Then status 200
     And match response.title == "#(newTitle)"
+    * def id = response.id
 
-    And method get
+    When method get
     Then status 200
     And match response[0].title contains "#(firstTitle)"
+
+    Given path id
+    And request
+      """
+      {
+        "title": "#(newTitle)zzz",
+        "completed": true
+      }
+      """
+    When method put
+    Then status 200
+    And match response.title == "#(newTitle)zzz"
+
+    Given url 'http://localhost:8080/api/reset'
+    When method delete
+    Then status 200
