@@ -1,0 +1,113 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
+plugins {
+    id 'xq-base'
+    id 'org.springframework.boot' version "3.3.0"
+}
+
+group = 'com.xq'
+version = '0.0.1'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly("org.slf4j:slf4j-api")
+    compileOnly("org.projectlombok:lombok")
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    annotationProcessor("org.projectlombok:lombok")
+    runtimeOnly 'com.h2database:h2:2.2.224'
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation 'com.intuit.karate:karate-core:1.4.1'
+    implementation(project(":api-client-spec"))
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+}
+
+//Extension configuration
+unitTest {
+    path = "com.xq.testplan.unit.*"
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude "**/*.java"
+        }
+    }
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+        showExceptions = true
+        showCauses = true
+        exceptionFormat = TestExceptionFormat.FULL
+    }
+
+}
+
+tasks.named('test') {
+    filter {
+        includeTestsMatching("com.xq.testplan.unit.*")
+    }
+}
+
+tasks.register('msIntTest', Test) {
+    group = "xq"
+    description = "run micro-service integration testing"
+    filter {
+        includeTestsMatching("com.xq.testplan.integration.*")
+    }
+}
+
+tasks.register("msCompTest", Test) {
+    group = "xq"
+    description = "run micro-service component testing"
+    filter {
+        includeTestsMatching("com.xq.testplan.component.*")
+    }
+    outputs.upToDateWhen { false }
+    systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
+    systemProperty 'junit.jupiter.execution.parallel.mode.default','concurrent'
+    systemProperty 'junit.jupiter.execution.parallel.config.fixed.parallelism', 17
+    systemProperty 'junit.jupiter.execution.parallel.config.strategy', 'fixed'
+}
+
+tasks.register("xqStartApp", Exec) {
+    group = "xq"
+    commandLine "java", "--version"
+    doLast {
+        def jarPath = "$tasks.bootJar.archivePath"
+        File logFile = new File("$workingDir/component.log")
+        def command = ["java", "-jar", "-Dspring.profiles.active=component", jarPath.toString()]
+
+        def processBuilder = new ProcessBuilder(command)
+        processBuilder.redirectErrorStream(true)
+        processBuilder.redirectOutput(logFile)
+        def process = processBuilder.start()
+
+        println "Started JAR file with PID: ${process.pid().toString()}"
+        def pidFile = new File("$workingDir/component.pid")
+        pidFile.text = process.pid().toString()
+    }
+}
+
+tasks.register("xqStopApp", Exec) {
+    group = "xq"
+    commandLine "echo", "Kill process with pid from file blackbox.pid"
+    doFirst {
+        def pidFile = new File("$workingDir/component.pid")
+        if (pidFile.exists()) {
+            def pid = pidFile.text
+            def command = ["kill", pid]
+            def processBuilder = new ProcessBuilder(command)
+            processBuilder.start()
+        }
+    }
+}

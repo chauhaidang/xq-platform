@@ -1,2 +1,12 @@
-GET localhost:8080
+
+
+POST http://localhost:8080/api/accounts/create
+Content-Type: application/json
+
+{
+  "name": "xq001",
+  "email": "xq001@gmail.com",
+  "mobileNumber": "0123456777"
+}
+
 

@@ -43,4 +43,5 @@ include 'fungus-accounts'
 include 'fungus-loans'
 include 'fungus-cards'
 include 'xq-platform-test-v3'
+include 'xq-ms-test-plan'
 
