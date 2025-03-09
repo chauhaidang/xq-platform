@@ -37,11 +37,11 @@ dependencyResolutionManagement {
 
 rootProject.name = 'xq-platform'
 include 'jvm-kit-common'
-include 'jvm-kit-stepdef'
 include 'api-client-spec'
 include 'sunstrike'
 include 'fungus-accounts'
 include 'fungus-loans'
 include 'fungus-cards'
-include 'xq-platform-test-v2'
+include 'xq-platform-test-v3'
+include 'xq-ms-test-plan'
 
