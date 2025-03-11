@@ -14,7 +14,7 @@
 Example request
 ```curl
 curl --request POST \
-  --url http://localhost:8080/api/accounts/create \
+  --url http://localhost:8080/api/requirements/create \
   --header 'Content-Type: application/json' \
   --data '{
     "name": "xq001",

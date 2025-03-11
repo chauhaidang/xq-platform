@@ -1,6 +1,6 @@
 package com.xq.testplan.repository;
 
-import com.xq.testplan.entity.Accounts;
+import com.xq.testplan.entity.Requirements;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Accounts, Long> {
+public interface RequirementsRepository extends JpaRepository<Requirements, Long> {
 
-    Optional<Accounts> findByCustomerId(Long customerId);
+    Optional<Requirements> findByUuid(String uuid);
 
     @Transactional
     @Modifying
-    void deleteByCustomerId(Long customerId);
+    void deleteByReqId(Long reqId);
+
+    Optional<Requirements> findByTitle(String title);
 }

@@ -5,6 +5,10 @@ plugins {
     id 'org.springframework.boot' version "3.3.0"
 }
 
+ext {
+    karateVersion = '1.5.1'
+}
+
 group = 'com.xq'
 version = '0.0.1'
 
@@ -21,10 +25,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     runtimeOnly 'com.h2database:h2:2.2.224'
 
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
-    testImplementation 'com.intuit.karate:karate-core:1.4.1'
-    implementation(project(":api-client-spec"))
-    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+    testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
 }
 
 //Extension configuration
@@ -34,6 +35,12 @@ unitTest {
 
 sourceSets {
     test {
+        resources {
+            srcDir file('src/test/java')
+            exclude "**/*.java"
+        }
+    }
+    msCompTest {
         resources {
             srcDir file('src/test/java')
             exclude "**/*.java"
@@ -49,7 +56,6 @@ tasks.withType(Test).configureEach {
         showCauses = true
         exceptionFormat = TestExceptionFormat.FULL
     }
-
 }
 
 tasks.named('test') {
@@ -69,14 +75,11 @@ tasks.register('msIntTest', Test) {
 tasks.register("msCompTest", Test) {
     group = "xq"
     description = "run micro-service component testing"
-    filter {
-        includeTestsMatching("com.xq.testplan.component.*")
-    }
+    useJUnitPlatform()
+    systemProperty "karate.options", "-t=@progression"
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    systemProperty("test", "ComponentTest")
     outputs.upToDateWhen { false }
-    systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
-    systemProperty 'junit.jupiter.execution.parallel.mode.default','concurrent'
-    systemProperty 'junit.jupiter.execution.parallel.config.fixed.parallelism', 17
-    systemProperty 'junit.jupiter.execution.parallel.config.strategy', 'fixed'
 }
 
 tasks.register("xqStartApp", Exec) {

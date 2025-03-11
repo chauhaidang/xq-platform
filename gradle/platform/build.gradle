@@ -8,7 +8,6 @@ ext {
     springboot_version = '3.3.0'
     lombok_version = '1.18.30'
     junit_version = '5.11.3'
-    serenityCoreVersion = '4.2.8'
 }
 
 dependencies {
@@ -26,12 +25,6 @@ dependencies {
     api "org.springframework.boot:spring-boot-starter-test:$springboot_version"
     api "org.slf4j:slf4j-api"
     api "org.projectlombok:lombok:$lombok_version"
-    api "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
-    api "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
-    api "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
-    api "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}"
-    api "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
-    api "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
 }
 
 group = "com.xq"

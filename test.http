@@ -1,12 +1,8 @@
 
 
-POST http://localhost:8080/api/accounts/create
+POST http://localhost:8080/api/requirement/create
 Content-Type: application/json
 
-{
-  "name": "xq001",
-  "email": "xq001@gmail.com",
-  "mobileNumber": "0123456777"
-}
+{ "title": "abc", "description": "test plan", "scopes": "scope1,scope2", "tags": "tag1,tag2", "references": "http://www.google.com" }
 
 

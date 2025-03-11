@@ -31,9 +31,9 @@ dependencies {
 
     annotationProcessor("org.projectlombok:lombok")
     implementation(platform("com.xq:platform"))
-    implementation('com.intuit.karate:karate-core:1.4.1')
+    implementation('io.karatelabs:karate-core:1.5.1')
     testImplementation(platform("com.xq:platform"))
-    testImplementation 'com.intuit.karate:karate-core:1.4.1'
+    testImplementation 'io.karatelabs:karate-core:1.5.1'
 }
 
 configurations {

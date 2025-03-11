@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: TestPlan API
+  description: REST APIs for TestPlan service
+  version: 1.0.0
+paths:
+  /api/requirement/create:
+    post:
+      summary: Create a test requirement
+      description: API endpoint to create a test requirement information by input request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequirementsDto'
+      responses:
+        '201':
+          description: Http status created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+  /api/requirement/fetch:
+    get:
+      summary: Get a test requirement
+      description: API endpoint to get a test requirement information by uuid
+      parameters:
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'
+          description: requirement uuid must be a valid UUID
+      responses:
+        '200':
+          description: Http status success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequirementsDto'
+  /api/requirement/update:
+    put:
+      summary: Update a test requirement
+      description: API endpoint to update a test requirement by input request
+      parameters:
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'
+          description: requirement uuid must be a valid UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequirementsDto'
+      responses:
+        '200':
+          description: Http status success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+        '417':
+          description: Expectation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+        '500':
+          description: Http status internal server error - can not update a test requirement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+  /api/requirement/delete:
+    delete:
+      summary: Delete a test requirement
+      description: API endpoint to delete a test requirement by uuid
+      parameters:
+        - name: uuid
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'
+          description: requirement uuid must be a valid UUID
+      responses:
+        '200':
+          description: Http status success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+        '417':
+          description: Expectation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDto'
+        '500':
+          description: Http status internal server error - can not delete a test requirement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+components:
+  schemas:
+    RequirementsDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        scopes:
+          type: string
+        tags:
+          type: string
+        references:
+          type: string
+    ResponseDto:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    ErrorResponseDto:
+      type: object
+      properties:
+        status:
+          type: string
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
