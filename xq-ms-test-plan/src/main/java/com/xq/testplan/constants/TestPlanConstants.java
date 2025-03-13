@@ -17,4 +17,5 @@ public class TestPlanConstants {
     public static final String MSG_DEL_REQ_SUCCESS = "Test requirement deleted successfully";
     public static final String MSG_417_UPDATE = "Update operation failed. Please try again or contact product support";
     public static final String MSG_417_DELETE = "Delete operation failed. Please try again or contact product support";
+    public static final String DELETE_KEY = "akaj3971y1aksjda";
 }

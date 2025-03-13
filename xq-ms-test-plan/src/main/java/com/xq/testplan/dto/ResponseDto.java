@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class ResponseDto {
     private String statusCode;
     private String statusMsg;
-    private String uuid = "";
+    private String uuid;
 }

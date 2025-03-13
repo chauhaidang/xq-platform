@@ -1,6 +1,6 @@
 package com.xq.testplan.controller;
 
-import com.xq.testplan.constants.TestPlanConstants;
+import com.xq.testplan.dto.ListRequirementsDto;
 import com.xq.testplan.dto.RequirementsDto;
 import com.xq.testplan.dto.ErrorResponseDto;
 import com.xq.testplan.dto.ResponseDto;
@@ -20,6 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import static com.xq.testplan.constants.TestPlanConstants.*;
 
 @Tag(
         name = "REST APIS  TestPlan",
@@ -53,8 +55,8 @@ public class RequirementsController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ResponseDto.builder()
-                        .statusCode(TestPlanConstants.STATUS_201)
-                        .statusMsg(TestPlanConstants.MSG_201)
+                        .statusCode(STATUS_201)
+                        .statusMsg(MSG_201)
                         .uuid(uuid)
                         .build());
     }
@@ -68,10 +70,14 @@ public class RequirementsController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Http status success"
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Invalid UUID format"
             )
     })
     public ResponseEntity<RequirementsDto> fetchAccount(
-            @PathVariable("uuid") @Pattern(
+            @Valid @PathVariable("uuid") @Pattern(
                     regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
                     message = "requirement uuid must be a valid UUID"
             ) String uuid
@@ -116,14 +122,14 @@ public class RequirementsController {
                 ResponseEntity
                         .status(HttpStatus.OK)
                         .body(ResponseDto.builder()
-                                .statusCode(TestPlanConstants.STATUS_200)
-                                .statusMsg(TestPlanConstants.MSG_200)
+                                .statusCode(STATUS_200)
+                                .statusMsg(MSG_200)
                                 .build()) :
                 ResponseEntity
                         .status(HttpStatus.EXPECTATION_FAILED)
                         .body(ResponseDto.builder()
-                                .statusCode(TestPlanConstants.STATUS_417)
-                                .statusMsg(TestPlanConstants.MSG_417_UPDATE)
+                                .statusCode(STATUS_417)
+                                .statusMsg(MSG_417_UPDATE)
                                 .build());
     }
 
@@ -161,13 +167,67 @@ public class RequirementsController {
                 ResponseEntity
                         .status(HttpStatus.OK)
                         .body(ResponseDto.builder()
-                                .statusCode(TestPlanConstants.STATUS_200)
-                                .statusMsg(TestPlanConstants.MSG_DEL_REQ_SUCCESS)
+                                .statusCode(STATUS_200)
+                                .statusMsg(MSG_DEL_REQ_SUCCESS)
                                 .build()):
                 ResponseEntity
                         .status(HttpStatus.EXPECTATION_FAILED)
                         .body(ResponseDto.builder()
-                                .statusCode(TestPlanConstants.STATUS_417)
-                                .statusMsg(TestPlanConstants.MSG_417_DELETE)
-                                .build());    }
+                                .statusCode(STATUS_417)
+                                .statusMsg(MSG_417_DELETE)
+                                .build());
+    }
+
+    @DeleteMapping("/delete/all")
+    @Operation(
+            summary = "Delete all test requirements",
+            description = "API endpoint to delete all test requirements"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Http status success"
+            ),
+            @ApiResponse(
+                    responseCode = STATUS_500,
+                    description = MSG_500,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    public ResponseEntity<ResponseDto> deleteAllRequirements() {
+        log.info("Request received to delete all test requirements");
+        requirementsService.deleteAllRequirements(DELETE_KEY);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ResponseDto.builder()
+                        .statusCode(STATUS_200)
+                        .statusMsg("All requirements deleted successfully")
+                        .build());
+    }
+
+    @GetMapping("/all")
+    @Operation(
+            summary = "Get all test requirements",
+            description = "API endpoint to get all test requirements"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = STATUS_200,
+                    description = MSG_200
+            ),
+            @ApiResponse(
+                    responseCode = STATUS_500,
+                    description = MSG_500,
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    public ResponseEntity<ListRequirementsDto> getAllRequirements() {
+        log.info("Request received to fetch all test requirements");
+        ListRequirementsDto requirements = requirementsService.getAllRequirements();
+        return ResponseEntity.ok(requirements);
+    }
 }

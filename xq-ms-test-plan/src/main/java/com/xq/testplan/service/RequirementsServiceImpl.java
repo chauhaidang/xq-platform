@@ -1,5 +1,6 @@
 package com.xq.testplan.service;
 
+import com.xq.testplan.dto.ListRequirementsDto;
 import com.xq.testplan.dto.RequirementsDto;
 import com.xq.testplan.entity.Requirements;
 import com.xq.testplan.exception.RequirementAlreadyExistsException;
@@ -9,9 +10,12 @@ import com.xq.testplan.repository.RequirementsRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -42,11 +46,13 @@ public class RequirementsServiceImpl implements IRequirementsService {
     }
 
     @Override
+    @Transactional
     public boolean updateRequirement(String uuid, RequirementsDto requirementsDto) {
         Requirements requirement = requirementsRepository.findByUuid(uuid).orElseThrow(
                 () -> new ResourceNotFoundException("Requirement", "uuid", uuid)
         );
         RequirementMapper.mapToRequirement(requirementsDto, requirement);
+        requirementsRepository.saveAndFlush(requirement);
         return true;
     }
 
@@ -55,7 +61,32 @@ public class RequirementsServiceImpl implements IRequirementsService {
         Requirements requirement = requirementsRepository.findByUuid(uuid).orElseThrow(
                 () -> new ResourceNotFoundException("Requirement", "uuid", uuid)
         );
-        requirementsRepository.deleteById(requirement.getReqId());
+        requirementsRepository.deleteByReqId(requirement.getReqId());
         return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteAllRequirements(String key) {
+        if (key.equals("akaj3971y1aksjda")) {
+            requirementsRepository.deleteAll();
+            requirementsRepository.flush();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public ListRequirementsDto getAllRequirements() {
+        List<RequirementsDto> requirementsDtos = requirementsRepository
+                .findAll()
+                .stream()
+                .map(requirement
+                        -> RequirementMapper.mapToRequirementDto(requirement, new RequirementsDto()))
+                .toList();
+        return ListRequirementsDto.builder()
+                .total(requirementsDtos.size())
+                .requirements(requirementsDtos)
+                .build();
     }
 }
