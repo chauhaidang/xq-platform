@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ComponentTest {
    @Test
-    void testParallel() {
+    void execute() {
         Results results = Runner.path("classpath:com/xq/testplan/component")
                 //.outputCucumberJson(true)
                 .parallel(5);

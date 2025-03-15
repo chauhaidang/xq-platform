@@ -24,6 +24,7 @@ public class RequirementsServiceImpl implements IRequirementsService {
     private RequirementsRepository requirementsRepository;
 
     @Override
+    @Transactional
     public String createRequirement(RequirementsDto requirementsDto) {
         log.info("Creating requirement for {}", requirementsDto);
         Optional<Requirements> requirement = requirementsRepository.findByTitle(requirementsDto.getTitle());
