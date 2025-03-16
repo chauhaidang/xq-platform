@@ -1,13 +1,22 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
+import {View, Text, Image, StyleSheet, Button} from 'react-native'
 import DetailSection from '../components/DetailSection'
 import { MEALS } from '../data/dummy-data'
 import CustomColors from '../constants/colors'
 import SubTitle from '../components/SubTitle'
 import StaticList from '../components/StaticList'
+import {useLayoutEffect} from "react";
 
-function MealDetailsScreen({ route }) {
+function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
   const filteredMeal = MEALS.find(meal => meal.id === mealId)
+  function headerBtnOnPressHandler() {
+    console.log('Pressed!')
+  }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button title={'Press me!'} onPress={headerBtnOnPressHandler}/>
+    })
+  }, [navigation, headerBtnOnPressHandler])
   return (
     <View>
       <Image style={styles.image} source={{ uri: filteredMeal.imageUrl }} />
