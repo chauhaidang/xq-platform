@@ -5,6 +5,7 @@ import CustomColors from '../constants/colors'
 import SubTitle from '../components/SubTitle'
 import StaticList from '../components/StaticList'
 import {useLayoutEffect} from "react";
+import IconButton from "../components/IconButton";
 
 function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
@@ -14,7 +15,7 @@ function MealDetailsScreen({ route, navigation }) {
   }
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <Button title={'Press me!'} onPress={headerBtnOnPressHandler}/>
+      headerRight: () => <IconButton name={'star'} color={CustomColors.buttonBackground} onPress={headerBtnOnPressHandler}/>
     })
   }, [navigation, headerBtnOnPressHandler])
   return (
