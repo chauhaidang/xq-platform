@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'groovy'
-    id 'org.springframework.boot'
 }
 
 group = 'com.xq'
@@ -57,9 +56,4 @@ tasks.named("test") {
 
 tasks.named("jacocoTestReport") {
     dependsOn(tasks.named("test"))
-}
-
-//Predefined jar name
-bootJar {
-    archiveFileName = "app.jar"
 }
