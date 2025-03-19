@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  fungus-accounts:
+    image: xq/fungus-accounts:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: "component"
