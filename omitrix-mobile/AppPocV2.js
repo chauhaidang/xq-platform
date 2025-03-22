@@ -1,5 +1,6 @@
 import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from "@react-navigation/drawer";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/xq/HomeScreen";
 import {TITLES} from "./constants/screens";
 import TestPlansScreen from "./screens/xq/TestPlansScreen";
@@ -15,8 +16,8 @@ import {hideAsync} from "expo-splash-screen";
 
 // Keep the splash screen visible while we fetch resources
 preventAutoHideAsync()
-const Drawer = createDrawerNavigator()
-
+// const Drawer = createDrawerNavigator()
+const BottomTab = createBottomTabNavigator()
 export default function AppPocV2() {
     const [appIsReady, setAppIsReady] = useState(false)
     useEffect(() => {
@@ -57,7 +58,7 @@ export default function AppPocV2() {
         <>
             <StatusBar barStyle={'default'}/>
             <NavigationContainer onReady={onLayoutRootView}>
-                <Drawer.Navigator initialRouteName={TITLES.HOME} screenOptions={{
+                <BottomTab.Navigator initialRouteName={TITLES.HOME} screenOptions={{
                     headerStyle: {backgroundColor: CustomColors.background},
                     headerBackButtonDisplayMode: 'generic',
                     headerTitleAlign: 'center',
@@ -67,26 +68,27 @@ export default function AppPocV2() {
                         fontFamily: 'open-sans-bold',
                         color: CustomColors.textTitle,
                     },
-                    drawerActiveBackgroundColor: CustomColors.background,
-                    drawerActiveTintColor: CustomColors.textTitle,
-                    drawerStyle: {backgroundColor: CustomColors.listItem}
+
+                    // drawerActiveBackgroundColor: CustomColors.background,
+                    // drawerActiveTintColor: CustomColors.textTitle,
+                    // drawerStyle: {backgroundColor: CustomColors.listItem}
                 }}>
-                    <Drawer.Screen name="Home" component={HomeScreen} options={{
+                    <BottomTab.Screen name="Home" component={HomeScreen} options={{
                         drawerLabel: 'Home',
-                        drawerIcon: ({color, size}) => (<Ionicons name={"home"} color={color} size={size}/>)
+                        tabBarIcon: ({color, size}) => (<Ionicons name={"home"} color={color} size={size}/>)
                     }}/>
-                    <Drawer.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} options={{
-                        drawerIcon: ({color, size}) => (<Ionicons name={"document-text"} color={color} size={size}/>)
+                    <BottomTab.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} options={{
+                        tabBarIcon: ({color, size}) => (<Ionicons name={"document-text"} color={color} size={size}/>)
                     }}/>
-                    <Drawer.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} options={{
-                        drawerIcon: ({color, size}) => (
-                            <Ionicons name={"checkmark-done-circle-outline"} color={color} size={size}/>)
+                    <BottomTab.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} options={{
+                        tabBarIcon: ({color, size}) => (
+                            <Ionicons name={"checkmark-done-circle-outline"} color={color} size={size} />)
                     }}/>
-                    <Drawer.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} options={{
-                        drawerIcon: ({color, size}) => (
+                    <BottomTab.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} options={{
+                        tabBarIcon: ({color, size}) => (
                             <Ionicons name={"stats-chart-outline"} color={color} size={size}/>)
                     }}/>
-                </Drawer.Navigator>
+                </BottomTab.Navigator>
             </NavigationContainer>
 
         </>
