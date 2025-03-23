@@ -8,6 +8,8 @@ const CustomColors = {
   textTitle: '#8B0000',
   listItem: '#fdfdfd',
   shadow: 'black',
+  textBlack: 'black',
+  buttonBackgroundDark: '#d9d4d4',
 }
 
 export default CustomColors
