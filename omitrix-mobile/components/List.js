@@ -7,7 +7,13 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
  * @returns a FlatList component with the data from the transformed input ({id, text})
  */
 const List = ({ input, renderHandler }) => {
-  const data = input ? input.map((value, index) => ({ text: value, id: index + 1 })) : []
+  // Inject identifier to each item in the list if there is no id provided
+  const data = input.map((value, index) => {
+    return {
+      id: value.id ?? index + 1,
+      ...value
+    }
+  })
   return (
     <FlatList
       data={data}

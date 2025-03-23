@@ -5,18 +5,41 @@ import CustomColors from '../../constants/colors'
 import EntityItem from '../../components/EntityItem'
 import { testProps } from '../../utils/test-utils'
 
-const renderEntityHandler = itemData => (
-  <EntityItem index={itemData.item.id} value={itemData.item.text} onDelete={() => {}} />
+
+/**
+ * Render handler for the test requirements list
+ * @param itemData which should contain the id and description fields
+ * @returns {JSX.Element}
+ */
+const renderTestRequirementsHandler = itemData => (
+  <EntityItem index={itemData.item.id} data={itemData.item.description} onDelete={() => {}} />
 )
 
-export default function TestPlansScreen() {
-  const mockData = []
-  for (let i = 1; i <= 20; i++) {
-    mockData.push('Requirement description ' + i)
+const generateDummyRequirements = (count) => {
+  const requirements = [];
+  for (let i = 1; i <= count; i++) {
+    requirements.push({
+      id: i,
+      description: `Requirement description ${i}`,
+      priority: 'Medium',
+      status: 'Open',
+      createdDate: new Date().toISOString(),
+      lastUpdatedDate: new Date().toISOString(),
+      assignedTo: `User ${i}`,
+      acceptanceCriteria: [
+        `Acceptance criteria ${i}-1`,
+        `Acceptance criteria ${i}-2`
+      ]
+    });
   }
+  return requirements;
+};
+
+export default function TestPlansScreen() {
+  const requirements = generateDummyRequirements(10)
   return (
     <View style={styles.root}>
-      <List input={mockData} renderHandler={renderEntityHandler} />
+      <List input={requirements} renderHandler={renderTestRequirementsHandler} />
     </View>
   )
 }

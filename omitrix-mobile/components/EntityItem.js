@@ -2,9 +2,7 @@ import { Text, View, StyleSheet, Pressable, Platform } from 'react-native'
 import { testProps } from '../utils/test-utils'
 import CustomColors from '../constants/colors'
 
-function EntityItem(props) {
-  const index = props.index
-  const content = props.value
+function EntityItem({index, data, onDelete}) {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.entityItemContainer}>
@@ -12,11 +10,12 @@ function EntityItem(props) {
           {...testProps(`item-entity-${index}`)}
           android_ripple={styles.androidRipple}
           onPress={() => {
-            props.onDelete(props.id)
+            onDelete(index)
+            console.log(`EntityItem with index ${index} is pressed`)
           }}
           style={({ pressed }) => [styles.button, pressed && styles.iosRipple]}
         >
-          <Text style={styles.entityItemText}>{content}</Text>
+          <Text style={styles.entityItemText}>{data ?? "Can not get description"}</Text>
         </Pressable>
       </View>
     </View>

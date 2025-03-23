@@ -9,7 +9,6 @@ function HomeScreen() {
             <Card>{TITLES.TEST_PLAN_OVERVIEW}</Card>
             <Card>{TITLES.TEST_CASE_OVERVIEW}</Card>
             <Card>{TITLES.TEST_REPORT_OVERVIEW}</Card>
-            <Card>{TITLES.DEV_MODE}</Card>
         </View>
     )
 }
