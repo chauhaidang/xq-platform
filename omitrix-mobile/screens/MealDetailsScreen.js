@@ -4,20 +4,28 @@ import { MEALS } from '../data/dummy-data'
 import CustomColors from '../constants/colors'
 import SubTitle from '../components/SubTitle'
 import StaticList from '../components/StaticList'
-import {useLayoutEffect} from "react";
+import { useContext, useLayoutEffect } from 'react'
 import IconButton from "../components/IconButton";
+import { FavouritesContext } from '../store/context/favourites-context'
 
 function MealDetailsScreen({ route, navigation }) {
   const mealId = route.params.mealId
   const filteredMeal = MEALS.find(meal => meal.id === mealId)
-  function headerBtnOnPressHandler() {
-    console.log('Pressed!')
+  const favouriteCtx = useContext(FavouritesContext)
+  const isFavorite = favouriteCtx.ids.includes(mealId)
+
+  function changeFavouriteStatusHandler() {
+    if (isFavorite) {
+      favouriteCtx.removeFavourite(mealId)
+    } else {
+      favouriteCtx.addFavourite(mealId)
+    }
   }
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => <IconButton name={'star'} color={CustomColors.buttonBackground} onPress={headerBtnOnPressHandler}/>
+      headerRight: () => <IconButton name={isFavorite ? 'star' : 'star-outline'} color={CustomColors.buttonBackground} onPress={changeFavouriteStatusHandler}/>
     })
-  }, [navigation, headerBtnOnPressHandler])
+  }, [navigation, changeFavouriteStatusHandler])
   return (
     <View>
       <Image style={styles.image} source={{ uri: filteredMeal.imageUrl }} />
