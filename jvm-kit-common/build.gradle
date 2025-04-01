@@ -25,3 +25,7 @@ tasks.jacocoTestReport {
         }))
     }
 }
+
+tasks.named('bootJar') {
+    enabled = false
+}
