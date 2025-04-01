@@ -17,7 +17,7 @@ public class TestPlansTest extends BaseTestFixture {
         $(Header.LABEL_TEST_PLANS).shouldBe(visible);
         $(Header.BUTTON_BACK).shouldBe(visible);
         $(TestPlans.ITEM.apply(1)).shouldBe(visible);
-        $(TestPlans.ITEM.apply(20)).scrollTo().shouldBe(visible);
+        $(TestPlans.ITEM.apply(10)).scrollTo().shouldBe(visible);
 
         $(Header.BUTTON_BACK).tap();
         $(Header.LABEL_HOME).shouldBe(visible);

@@ -16,4 +16,14 @@ public class HomeTest extends BaseTestFixture {
         $(Home.LABEL_TEST_CASES).shouldBe(visible);
         $(Home.LABEL_TEST_REPORTS).shouldBe(visible);
     }
+
+    @Test
+    void testThatUserCanGoBackToHomeScreen() {
+//       go to test cases screen
+//       then go back to home
+//       and go to test plan screen
+//       then go back to home
+//       and go to test report screen
+//       then go back to home
+    }
 }

@@ -1,14 +1,9 @@
-import {Button, StyleSheet, Text, View} from 'react-native'
-import PrimaryButton from "../../components/PrimaryButton";
+import { StyleSheet, Text, View } from 'react-native'
 
-function TestCasesScreen({navigation}) {
-  function openMenuHandler() {
-    navigation.toggleDrawer()
-  }
+function TestCasesScreen({ navigation }) {
   return (
     <View style={styles.root}>
       <Text>Test Cases Are Coming Soon!</Text>
-      <PrimaryButton onPress={openMenuHandler}>Menu</PrimaryButton>
     </View>
   )
 }
@@ -20,7 +15,4 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  button: {
-
-  }
 })

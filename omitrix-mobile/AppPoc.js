@@ -13,6 +13,7 @@ import TestReportsScreen from './screens/xq/TestReportsScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import DevScreen from './screens/DevScreen'
 import { Ionicons } from '@expo/vector-icons'
+import TestRequirementContextProvider from './store/context/test-requirement-context'
 
 // Keep the splash screen visible while we fetch resources
 preventAutoHideAsync()
@@ -31,17 +32,17 @@ function BottomTabNavigator() {
         fontFamily: 'open-sans-bold',
         color: CustomColors.textTitle,
       },
-      tabBarActiveTintColor: CustomColors.textTitle
+      tabBarActiveTintColor: CustomColors.textTitle,
     }}>
       <BottomTab.Screen
         name={TITLES.HOME} component={HomeScreen}
         options={{
-          tabBarIcon: ({color, size}) => (<Ionicons name={"home"} color={color} size={size}/>),
+          tabBarIcon: ({ color, size }) => (<Ionicons name={'home'} color={color} size={size} />),
         }}
       />
       <BottomTab.Screen name={TITLES.DEV_MODE} component={DevScreen} options={{
-        tabBarIcon: ({color, size}) => (<Ionicons name={"code-slash-outline"} color={color} size={size}/>)
-      }}/>
+        tabBarIcon: ({ color, size }) => (<Ionicons name={'code-slash-outline'} color={color} size={size} />),
+      }} />
     </BottomTab.Navigator>
   )
 }
@@ -85,26 +86,28 @@ export default function App() {
   return (
     <>
       <StatusBar barStyle={'default'} />
-      <NavigationContainer onReady={onLayoutRootView}>
-        <Stack.Navigator screenOptions={{
-          headerStyle: { backgroundColor: CustomColors.background },
-          headerBackButtonDisplayMode: 'generic',
-          headerTitleAlign: 'center',
-          headerTintColor: CustomColors.textTitle,
-          headerTitleStyle: {
-            fontSize: 26,
-            fontFamily: 'open-sans-bold',
-            color: CustomColors.textTitle,
-          },
-        }}>
-          <Stack.Screen name={TITLES.HOME} component={BottomTabNavigator} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} />
-          <Stack.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} />
-          <Stack.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <TestRequirementContextProvider>
+        <NavigationContainer onReady={onLayoutRootView}>
+          <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: CustomColors.background },
+            headerBackButtonDisplayMode: 'generic',
+            headerTitleAlign: 'center',
+            headerTintColor: CustomColors.textTitle,
+            headerTitleStyle: {
+              fontSize: 26,
+              fontFamily: 'open-sans-bold',
+              color: CustomColors.textTitle,
+            },
+          }}>
+            <Stack.Screen name={TITLES.HOME} component={BottomTabNavigator} options={{
+              headerShown: false,
+            }} />
+            <Stack.Screen name={TITLES.TEST_PLAN_OVERVIEW} component={TestPlansScreen} />
+            <Stack.Screen name={TITLES.TEST_CASE_OVERVIEW} component={TestCasesScreen} />
+            <Stack.Screen name={TITLES.TEST_REPORT_OVERVIEW} component={TestReportsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </TestRequirementContextProvider>
     </>
   )
 }
