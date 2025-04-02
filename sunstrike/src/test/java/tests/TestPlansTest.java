@@ -6,14 +6,13 @@ import repository.object.Header;
 import repository.object.Home;
 import repository.object.TestPlans;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.appium.SelenideAppium.$;
 
 public class TestPlansTest extends BaseTestFixture {
     @Test
-    void testTestPlansAreShown() {
-        $(Home.LABEL_TEST_PLANS).tap();
+    void testTestRequirementsAreShown() {
+        $(Home.LABEL_TEST_PLANS).shouldBe(visible).click();
         $(Header.LABEL_TEST_PLANS).shouldBe(visible);
         $(Header.BUTTON_BACK).shouldBe(visible);
         $(TestPlans.ITEM.apply(1)).shouldBe(visible);

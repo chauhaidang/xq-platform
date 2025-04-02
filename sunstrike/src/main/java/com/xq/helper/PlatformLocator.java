@@ -21,4 +21,8 @@ public class PlatformLocator {
     public static By byAndroidContentDesc(String content) {
         return byAttribute("content-desc", content);
     }
+
+    public static By byAndroidResourceId(String id) {
+        return byAttribute("resource-id", id);
+    }
 }

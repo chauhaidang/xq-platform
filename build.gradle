@@ -15,7 +15,7 @@ ext {
 
 tasks.register("prepareApk", Copy.class) {
     group 'xq'
-    from './omitrix-mobile/android/app/build/outputs/apk/release/app-release.apk'
+    from './../xq-mobile-app/android/app/build/outputs/apk/release/app-release.apk'
     into './sunstrike/src/test/resources'
     rename { String fileName ->
         fileName.replace('app-release', 'xq')
@@ -24,7 +24,7 @@ tasks.register("prepareApk", Copy.class) {
 
 tasks.register("prepareApp", Copy.class) {
     group 'xq'
-    from './omitrix-mobile/ios/build/Products/Release-iphonesimulator/omitrixmobile.app/'
+    from './../xq-mobile-app/ios/build/Products/Release-iphonesimulator/omitrixmobile.app/'
     into './sunstrike/src/test/resources/xq.app'
 }
 
