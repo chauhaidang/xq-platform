@@ -1,7 +1,7 @@
 Feature: Test Requirements API
 
   Background:
-    Given url 'http://localhost:8080'
+    Given url apigateway
     And def randomTitle =
       """
       function(max){ return "title-" + Math.floor(Math.random() * max) }

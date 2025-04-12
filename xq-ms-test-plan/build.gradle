@@ -87,7 +87,7 @@ tasks.register("xqStartApp", Exec) {
     commandLine "java", "--version"
     doLast {
         def jarPath = "$tasks.bootJar.archivePath"
-        File logFile = new File("$workingDir/component.log")
+        File logFile = new File("$workingDir/build/component.log")
         def command = ["java", "-jar", "-Dspring.profiles.active=component", jarPath.toString()]
 
         def processBuilder = new ProcessBuilder(command)
@@ -96,7 +96,7 @@ tasks.register("xqStartApp", Exec) {
         def process = processBuilder.start()
 
         println "Started JAR file with PID: ${process.pid().toString()}"
-        def pidFile = new File("$workingDir/component.pid")
+        def pidFile = new File("$workingDir/build/component.pid")
         pidFile.text = process.pid().toString()
     }
 }
@@ -105,7 +105,7 @@ tasks.register("xqStopApp", Exec) {
     group = "xq"
     commandLine "echo", "Kill process with pid from file blackbox.pid"
     doFirst {
-        def pidFile = new File("$workingDir/component.pid")
+        def pidFile = new File("$workingDir/build/component.pid")
         if (pidFile.exists()) {
             def pid = pidFile.text
             def command = ["kill", pid]
