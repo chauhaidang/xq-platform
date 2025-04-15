@@ -5,6 +5,10 @@
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.6/samples
  */
 
+plugins {
+    id 'org.openapi.generator' version '7.12.0'
+}
+
 version = '1.0.0'
 
 ext {
@@ -37,3 +41,32 @@ tasks.register("platformTestV1", Exec.class) {
     group 'xq'
     commandLine 'sh', '-c', 'cd ./node-platform-test && yarn t'
 }
+
+openApiGenerate {
+    generatorName = "java" // Specify the generator type
+    inputSpec = "$projectDir/api/api-test-plan.yaml" // Path to your OpenAPI spec
+    outputDir = "$projectDir/xq-api-test-plan" // Output directory for generated code
+    apiPackage = "com.xq.testplan.api.client" // Package for API classes
+    modelPackage = "com.xq.testplan.api.model" // Package for model classes
+    invokerPackage = "com.xq.testplan.api.invoker" // Package for invoker classes
+    configOptions = [
+            dateLibrary: "java11" // Optional: Specify additional config options
+    ]
+    library = "native"
+    skipOverwrite = false
+}
+
+tasks.named("openApiGenerate") {
+    doFirst {
+        //remove directory
+        def outputDir = new File("$projectDir/xq-api-test-plan/src/main/java/")
+        if (outputDir.exists()) {
+            outputDir.deleteDir()
+        }
+    }
+    doLast {
+        println "OpenAPI code generation completed."
+    }
+}
+
+
