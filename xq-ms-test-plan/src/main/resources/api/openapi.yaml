@@ -4,7 +4,7 @@ info:
   description: TestPlan microservice api documentation
   contact:
     name: David Chau
-    url: xq.com
+    url: https://xq.com
     email: service.testplan@xq.com
   license:
     name: Apache 2.0
@@ -51,7 +51,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error response"
+                $ref: "#/components/schemas/ErrorResponse"
         "200":
           description: Http status success
           content:
@@ -113,7 +113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error response"
+                $ref: "#/components/schemas/ErrorResponse"
         "200":
           description: Request processed successfully
           content:
@@ -152,7 +152,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error response"
+                $ref: "#/components/schemas/ErrorResponse"
   /api/requirement/delete/all:
     delete:
       tags:
@@ -172,7 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error response"
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     Requirement:
@@ -215,7 +215,7 @@ components:
           description: Requirement references
           example: "Reference1, Reference2"
       description: Requirement request payload object
-    Error response:
+    ErrorResponse:
       type: object
       properties:
         apiPath:
