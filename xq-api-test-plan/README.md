@@ -1,10 +1,10 @@
-# openapi-java-client
+# xq-api-test-plan
 
 TestPlan microservice
 
 - API version: v1
 
-- Build date: 2025-04-16T00:35:51.082085+07:00[Asia/Ho_Chi_Minh]
+- Build date: 2025-04-16T01:01:53.229700+07:00[Asia/Ho_Chi_Minh]
 
 - Generator version: 7.12.0
 
@@ -43,8 +43,8 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>org.openapitools</groupId>
-  <artifactId>openapi-java-client</artifactId>
+  <groupId>com.xq</groupId>
+  <artifactId>xq-api-test-plan</artifactId>
   <version>v1</version>
   <scope>compile</scope>
 </dependency>
@@ -55,7 +55,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.openapitools:openapi-java-client:v1"
+compile "com.xq:xq-api-test-plan:v1"
 ```
 
 ### Others
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/openapi-java-client-v1.jar`
+- `target/xq-api-test-plan-v1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started

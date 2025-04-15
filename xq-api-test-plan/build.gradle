@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'com.diffplug.spotless'
 
-group = 'org.openapitools'
+group = 'com.xq'
 version = 'v1'
 
 buildscript {
@@ -38,7 +38,7 @@ javadoc {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = 'openapi-java-client'
+            artifactId = 'xq-api-test-plan'
             from components.java
         }
     }

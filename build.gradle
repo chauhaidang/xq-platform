@@ -50,19 +50,22 @@ openApiGenerate {
     modelPackage = "com.xq.testplan.api.model" // Package for model classes
     invokerPackage = "com.xq.testplan.api.invoker" // Package for invoker classes
     configOptions = [
-            dateLibrary: "java11" // Optional: Specify additional config options
+            dateLibrary: "java11",
+            addGeneratedAnnotation: "false",
+            useTags: "false"
     ]
     library = "native"
-    skipOverwrite = false
+    groupId = "com.xq"
+    id = "xq-api-test-plan"
 }
 
 tasks.named("openApiGenerate") {
     doFirst {
         //remove directory
-        def outputDir = new File("$projectDir/xq-api-test-plan/src/main/java/")
-        if (outputDir.exists()) {
-            outputDir.deleteDir()
-        }
+//        def outputDir = new File("$projectDir/xq-api-test-plan/src/main/java/")
+//        if (outputDir.exists()) {
+//            outputDir.deleteDir()
+//        }
     }
     doLast {
         println "OpenAPI code generation completed."
