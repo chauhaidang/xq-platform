@@ -64,7 +64,7 @@ tasks.register("generateTestPlanTs", org.openapitools.generator.gradle.plugin.ta
     group = "xq"
     generatorName = "typescript-axios" // Specify the TypeScript generator
     inputSpec = "$projectDir/api/api-test-plan.yaml" // Path to your OpenAPI spec
-    outputDir = "$projectDir/testplan-ts-client" // Output directory for generated code
+    outputDir = "$projectDir/xq-api-test-plan-node" // Output directory for generated code
     apiPackage = "api" // Package for API classes
     modelPackage = "model" // Package for model classes
     invokerPackage = "invoker" // Package for invoker classes
