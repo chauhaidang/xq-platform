@@ -26,6 +26,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2:2.2.224'
 
     testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
+    testImplementation(project(":xq-api-test-plan"))
+    testImplementation(project(":jvm-kit-common"))
 }
 
 //Extension configuration

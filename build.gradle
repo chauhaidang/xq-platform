@@ -43,6 +43,7 @@ tasks.register("platformTestV1", Exec.class) {
 }
 
 openApiGenerate {
+    group = "xq"
     generatorName = "java" // Specify the generator type
     inputSpec = "$projectDir/api/api-test-plan.yaml" // Path to your OpenAPI spec
     outputDir = "$projectDir/xq-api-test-plan" // Output directory for generated code
@@ -59,6 +60,23 @@ openApiGenerate {
     id = "xq-api-test-plan"
 }
 
+tasks.register("generateTestPlanTs", org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    group = "xq"
+    generatorName = "typescript-axios" // Specify the TypeScript generator
+    inputSpec = "$projectDir/api/api-test-plan.yaml" // Path to your OpenAPI spec
+    outputDir = "$projectDir/testplan-ts-client" // Output directory for generated code
+    apiPackage = "api" // Package for API classes
+    modelPackage = "model" // Package for model classes
+    invokerPackage = "invoker" // Package for invoker classes
+    configOptions = [
+            supportsES6: "true", // Enable ES6 support
+            npmName: "typescript-client", // Name of the generated npm package
+            npmVersion: "1.0.0" // Version of the generated npm package
+    ]
+}
+
+
+
 tasks.named("openApiGenerate") {
     doFirst {
         //remove directory
@@ -71,5 +89,4 @@ tasks.named("openApiGenerate") {
         println "OpenAPI code generation completed."
     }
 }
-
 
