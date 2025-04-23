@@ -90,3 +90,24 @@ tasks.named("openApiGenerate") {
     }
 }
 
+tasks.register('generateVersionReadme') {
+    group = 'xq'
+    description = 'Generates a README.md file with module versions.'
+
+    doLast {
+        def readmeFile = file('README.md')
+        def timestamp = new Date().format('yyyy-MM-dd HH:mm:ss')
+
+        readmeFile.append('\n\n## Module Versions - ' + timestamp + '\n\n')
+        readmeFile.append('| Module Name | Version |\n')
+        readmeFile.append('|-------------|----------|\n')
+
+        subprojects.each { subproject ->
+            def moduleName = subproject.name
+            def moduleVersion = subproject.version ?: 'undefined'
+            readmeFile.append(String.format("| %s | %s |\n", moduleName, moduleVersion))
+        }
+
+        println "Module versions with timestamp have been appended to README.md"
+    }
+}

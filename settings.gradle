@@ -15,7 +15,6 @@ pluginManagement {
             url "https://plugins.gradle.org/m2/"
         }
     }
-    includeBuild("xq-gradle/plugins")
 }
 buildscript {
     repositories {
@@ -32,7 +31,6 @@ dependencyResolutionManagement {
         mavenCentral()
         mavenLocal()
     }
-    includeBuild("xq-gradle/platform")
 }
 
 rootProject.name = 'xq-platform'

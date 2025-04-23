@@ -1,7 +1,7 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
-    id 'xq-base'
+    id 'xq-dev' version "2.0.0"
     id 'org.springframework.boot' version "3.3.0"
 }
 
@@ -12,17 +12,31 @@ ext {
 group = 'com.xq'
 version = '0.0.1'
 
+ext {
+    springboot_version = '3.3.0'
+    lombok_version = '1.18.30'
+    junit_version = '5.11.3'
+    slf4j_version = '1.7.36'
+    testng_version = '7.9.0'
+}
+
 repositories {
     mavenCentral()
     mavenLocal()
 }
 
 dependencies {
-    compileOnly("org.slf4j:slf4j-api")
-    compileOnly("org.projectlombok:lombok")
+    compileOnly("org.slf4j:slf4j-api:${slf4j_version}")
+    compileOnly("org.projectlombok:lombok:${lombok_version}")
+
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$springboot_version"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springboot_version"
+    implementation "org.springframework.boot:spring-boot-starter-validation:$springboot_version"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springboot_version"
+    implementation "org.springframework.boot:spring-boot-starter-test:$springboot_version"
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
-    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok:${lombok_version}")
     runtimeOnly 'com.h2database:h2:2.2.224'
 
     testImplementation "io.karatelabs:karate-junit5:${karateVersion}"

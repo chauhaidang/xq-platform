@@ -1,5 +1,5 @@
 plugins {
-    id 'xq-base' version '1.0.0'
+    id 'xq-dev' version '2.0.0'
     id 'org.springframework.boot' version '3.3.0'
 }
 
