@@ -22,6 +22,16 @@ pluginManagement {
             }
         }
     }
+    ext {
+        pluginXqVersion = '2.0.3'
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.toString().startsWith('xq')) {
+                useModule("com.xq:plugin:${pluginXqVersion}:${requested.id.toString()}@gradle")
+            }
+        }
+    }
 }
 buildscript {
     repositories {
