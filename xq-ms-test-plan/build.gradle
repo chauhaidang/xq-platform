@@ -56,12 +56,6 @@ sourceSets {
             exclude "**/*.java"
         }
     }
-    msCompTest {
-        resources {
-            srcDir file('src/test/java')
-            exclude "**/*.java"
-        }
-    }
 }
 
 tasks.withType(Test).configureEach {
@@ -91,6 +85,9 @@ tasks.register('msIntTest', Test) {
 tasks.register("msCompTest", Test) {
     group = "xq"
     description = "run micro-service component testing"
+    filter {
+        includeTestsMatching("com.xq.testplan.component.*")
+    }
     useJUnitPlatform()
     systemProperty "karate.options", "-t=@progression"
     systemProperty "karate.env", System.properties.getProperty("karate.env")

@@ -1,4 +1,4 @@
-package com.xq.accounts.component.requirement;
+package com.xq.testplan.component.requirement;
 
 import com.intuit.karate.junit5.Karate;
 
