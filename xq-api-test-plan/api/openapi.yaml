@@ -90,7 +90,7 @@ paths:
   /api/requirement/{uuid}:
     get:
       description: API endpoint to get a test requirement information by uuid
-      operationId: fetchAccount
+      operationId: fetchRequirement
       parameters:
       - explode: false
         in: path

@@ -10,8 +10,8 @@ All URIs are relative to *http://localhost:8080*
 | [**deleteAccountWithHttpInfo**](RestApisTestPlanApi.md#deleteAccountWithHttpInfo) | **DELETE** /api/requirement/delete | Delete a test requirement |
 | [**deleteAllRequirements**](RestApisTestPlanApi.md#deleteAllRequirements) | **DELETE** /api/requirement/delete/all | Delete all test requirements |
 | [**deleteAllRequirementsWithHttpInfo**](RestApisTestPlanApi.md#deleteAllRequirementsWithHttpInfo) | **DELETE** /api/requirement/delete/all | Delete all test requirements |
-| [**fetchAccount**](RestApisTestPlanApi.md#fetchAccount) | **GET** /api/requirement/{uuid} | Get a test requirement |
-| [**fetchAccountWithHttpInfo**](RestApisTestPlanApi.md#fetchAccountWithHttpInfo) | **GET** /api/requirement/{uuid} | Get a test requirement |
+| [**fetchRequirement**](RestApisTestPlanApi.md#fetchRequirement) | **GET** /api/requirement/{uuid} | Get a test requirement |
+| [**fetchRequirementWithHttpInfo**](RestApisTestPlanApi.md#fetchRequirementWithHttpInfo) | **GET** /api/requirement/{uuid} | Get a test requirement |
 | [**getAllRequirements**](RestApisTestPlanApi.md#getAllRequirements) | **GET** /api/requirement/all | Get all test requirements |
 | [**getAllRequirementsWithHttpInfo**](RestApisTestPlanApi.md#getAllRequirementsWithHttpInfo) | **GET** /api/requirement/all | Get all test requirements |
 | [**updateAccount**](RestApisTestPlanApi.md#updateAccount) | **PUT** /api/requirement/update | Update a test requirement |
@@ -419,9 +419,9 @@ No authorization required
 | **500** | An error occurred. Please try again or contact product support |  -  |
 
 
-## fetchAccount
+## fetchRequirement
 
-> Requirement fetchAccount(uuid)
+> Requirement fetchRequirement(uuid)
 
 Get a test requirement
 
@@ -445,10 +445,10 @@ public class Example {
         RestApisTestPlanApi apiInstance = new RestApisTestPlanApi(defaultClient);
         String uuid = "uuid_example"; // String | 
         try {
-            Requirement result = apiInstance.fetchAccount(uuid);
+            Requirement result = apiInstance.fetchRequirement(uuid);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RestApisTestPlanApi#fetchAccount");
+            System.err.println("Exception when calling RestApisTestPlanApi#fetchRequirement");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -484,9 +484,9 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Http status success |  -  |
 
-## fetchAccountWithHttpInfo
+## fetchRequirementWithHttpInfo
 
-> ApiResponse<Requirement> fetchAccount fetchAccountWithHttpInfo(uuid)
+> ApiResponse<Requirement> fetchRequirement fetchRequirementWithHttpInfo(uuid)
 
 Get a test requirement
 
@@ -511,12 +511,12 @@ public class Example {
         RestApisTestPlanApi apiInstance = new RestApisTestPlanApi(defaultClient);
         String uuid = "uuid_example"; // String | 
         try {
-            ApiResponse<Requirement> response = apiInstance.fetchAccountWithHttpInfo(uuid);
+            ApiResponse<Requirement> response = apiInstance.fetchRequirementWithHttpInfo(uuid);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling RestApisTestPlanApi#fetchAccount");
+            System.err.println("Exception when calling RestApisTestPlanApi#fetchRequirement");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());

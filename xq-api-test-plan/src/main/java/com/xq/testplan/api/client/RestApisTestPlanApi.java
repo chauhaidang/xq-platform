@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-16T01:01:53.229700+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-30T16:29:31.396499+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
 public class RestApisTestPlanApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -356,8 +356,8 @@ public class RestApisTestPlanApi {
    * @return Requirement
    * @throws ApiException if fails to make API call
    */
-  public Requirement fetchAccount(String uuid) throws ApiException {
-    ApiResponse<Requirement> localVarResponse = fetchAccountWithHttpInfo(uuid);
+  public Requirement fetchRequirement(String uuid) throws ApiException {
+    ApiResponse<Requirement> localVarResponse = fetchRequirementWithHttpInfo(uuid);
     return localVarResponse.getData();
   }
 
@@ -368,8 +368,8 @@ public class RestApisTestPlanApi {
    * @return ApiResponse&lt;Requirement&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Requirement> fetchAccountWithHttpInfo(String uuid) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = fetchAccountRequestBuilder(uuid);
+  public ApiResponse<Requirement> fetchRequirementWithHttpInfo(String uuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = fetchRequirementRequestBuilder(uuid);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -379,7 +379,7 @@ public class RestApisTestPlanApi {
       }
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("fetchAccount", localVarResponse);
+          throw getApiException("fetchRequirement", localVarResponse);
         }
         if (localVarResponse.body() == null) {
           return new ApiResponse<Requirement>(
@@ -408,10 +408,10 @@ public class RestApisTestPlanApi {
     }
   }
 
-  private HttpRequest.Builder fetchAccountRequestBuilder(String uuid) throws ApiException {
+  private HttpRequest.Builder fetchRequirementRequestBuilder(String uuid) throws ApiException {
     // verify the required parameter 'uuid' is set
     if (uuid == null) {
-      throw new ApiException(400, "Missing the required parameter 'uuid' when calling fetchAccount");
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling fetchRequirement");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();

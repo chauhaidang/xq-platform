@@ -4,7 +4,7 @@ TestPlan microservice
 
 - API version: v1
 
-- Build date: 2025-04-16T01:01:53.229700+07:00[Asia/Ho_Chi_Minh]
+- Build date: 2025-04-30T16:29:31.396499+07:00[Asia/Ho_Chi_Minh]
 
 - Generator version: 7.12.0
 
@@ -116,8 +116,8 @@ Class | Method | HTTP request | Description
 *RestApisTestPlanApi* | [**deleteAccountWithHttpInfo**](docs/RestApisTestPlanApi.md#deleteAccountWithHttpInfo) | **DELETE** /api/requirement/delete | Delete a test requirement
 *RestApisTestPlanApi* | [**deleteAllRequirements**](docs/RestApisTestPlanApi.md#deleteAllRequirements) | **DELETE** /api/requirement/delete/all | Delete all test requirements
 *RestApisTestPlanApi* | [**deleteAllRequirementsWithHttpInfo**](docs/RestApisTestPlanApi.md#deleteAllRequirementsWithHttpInfo) | **DELETE** /api/requirement/delete/all | Delete all test requirements
-*RestApisTestPlanApi* | [**fetchAccount**](docs/RestApisTestPlanApi.md#fetchAccount) | **GET** /api/requirement/{uuid} | Get a test requirement
-*RestApisTestPlanApi* | [**fetchAccountWithHttpInfo**](docs/RestApisTestPlanApi.md#fetchAccountWithHttpInfo) | **GET** /api/requirement/{uuid} | Get a test requirement
+*RestApisTestPlanApi* | [**fetchRequirement**](docs/RestApisTestPlanApi.md#fetchRequirement) | **GET** /api/requirement/{uuid} | Get a test requirement
+*RestApisTestPlanApi* | [**fetchRequirementWithHttpInfo**](docs/RestApisTestPlanApi.md#fetchRequirementWithHttpInfo) | **GET** /api/requirement/{uuid} | Get a test requirement
 *RestApisTestPlanApi* | [**getAllRequirements**](docs/RestApisTestPlanApi.md#getAllRequirements) | **GET** /api/requirement/all | Get all test requirements
 *RestApisTestPlanApi* | [**getAllRequirementsWithHttpInfo**](docs/RestApisTestPlanApi.md#getAllRequirementsWithHttpInfo) | **GET** /api/requirement/all | Get all test requirements
 *RestApisTestPlanApi* | [**updateAccount**](docs/RestApisTestPlanApi.md#updateAccount) | **PUT** /api/requirement/update | Update a test requirement

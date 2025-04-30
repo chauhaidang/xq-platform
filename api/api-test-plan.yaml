@@ -85,7 +85,7 @@ paths:
       - REST APIS  TestPlan
       summary: Get a test requirement
       description: API endpoint to get a test requirement information by uuid
-      operationId: fetchAccount
+      operationId: fetchRequirement
       parameters:
       - name: uuid
         in: path
