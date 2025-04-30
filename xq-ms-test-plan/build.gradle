@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 plugins {
     id 'xq-dev'
     id 'org.springframework.boot' version "3.3.0"
+    id 'com.avast.gradle.docker-compose' version '0.17.6'
 }
 
 ext {
@@ -95,35 +96,11 @@ tasks.register("msCompTest", Test) {
     outputs.upToDateWhen { false }
 }
 
-tasks.register("xqStartApp", Exec) {
-    group = "xq"
-    commandLine "java", "--version"
-    doLast {
-        def jarPath = "$tasks.bootJar.archivePath"
-        File logFile = new File("$workingDir/build/component.log")
-        def command = ["java", "-jar", "-Dspring.profiles.active=component", jarPath.toString()]
-
-        def processBuilder = new ProcessBuilder(command)
-        processBuilder.redirectErrorStream(true)
-        processBuilder.redirectOutput(logFile)
-        def process = processBuilder.start()
-
-        println "Started JAR file with PID: ${process.pid().toString()}"
-        def pidFile = new File("$workingDir/build/component.pid")
-        pidFile.text = process.pid().toString()
-    }
-}
-
-tasks.register("xqStopApp", Exec) {
-    group = "xq"
-    commandLine "echo", "Kill process with pid from file blackbox.pid"
-    doFirst {
-        def pidFile = new File("$workingDir/build/component.pid")
-        if (pidFile.exists()) {
-            def pid = pidFile.text
-            def command = ["kill", pid]
-            def processBuilder = new ProcessBuilder(command)
-            processBuilder.start()
-        }
-    }
+dockerCompose {
+    useComposeFiles.set(['docker-compose.yml'])
+    removeVolumes.set(true)
+    removeOrphans.set(true)
+    waitForTcpPorts.set(true)
+    captureContainersOutput.set(true)
+    stopContainers.set(true)
 }

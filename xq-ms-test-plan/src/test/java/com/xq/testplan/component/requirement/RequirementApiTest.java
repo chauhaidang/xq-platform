@@ -11,6 +11,7 @@ import com.xq.testplan.api.invoker.Configuration;
 import com.xq.testplan.api.model.Requirement;
 import com.xq.testplan.api.model.Response;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.xq.StringUtility.generateRandomString;
@@ -20,9 +21,13 @@ public class RequirementApiTest {
     private static RestApisTestPlanApi testPlanApi = null;
 
     @BeforeAll
-    static void setup() throws ApiException {
+    static void beforeAll() throws ApiException {
         apiClient.updateBaseUri(new ConfigReader().loadConfig().getApiGateway());
         testPlanApi = new RestApisTestPlanApi(apiClient);
+    }
+
+    @BeforeEach
+    void beforeEach() throws ApiException {
         testPlanApi.deleteAllRequirements();
     }
 
