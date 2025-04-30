@@ -25,7 +25,7 @@ paths:
       - REST APIS  TestPlan
       summary: Update a test requirement
       description: API endpoint to update a test requirement by input request
-      operationId: updateAccount
+      operationId: updateRequirement
       parameters:
       - name: uuid
         in: query
@@ -126,7 +126,7 @@ paths:
       - REST APIS  TestPlan
       summary: Delete a test requirement
       description: API endpoint to delete a test requirement by uuid
-      operationId: deleteAccount
+      operationId: deleteRequirement
       parameters:
       - name: uuid
         in: query

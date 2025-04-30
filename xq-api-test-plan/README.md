@@ -4,7 +4,7 @@ TestPlan microservice
 
 - API version: v1
 
-- Build date: 2025-04-30T16:29:31.396499+07:00[Asia/Ho_Chi_Minh]
+- Build date: 2025-04-30T17:26:38.637157+07:00[Asia/Ho_Chi_Minh]
 
 - Generator version: 7.12.0
 
@@ -112,16 +112,16 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *RestApisTestPlanApi* | [**createRequirement**](docs/RestApisTestPlanApi.md#createRequirement) | **POST** /api/requirement/create | Create a test requirement
 *RestApisTestPlanApi* | [**createRequirementWithHttpInfo**](docs/RestApisTestPlanApi.md#createRequirementWithHttpInfo) | **POST** /api/requirement/create | Create a test requirement
-*RestApisTestPlanApi* | [**deleteAccount**](docs/RestApisTestPlanApi.md#deleteAccount) | **DELETE** /api/requirement/delete | Delete a test requirement
-*RestApisTestPlanApi* | [**deleteAccountWithHttpInfo**](docs/RestApisTestPlanApi.md#deleteAccountWithHttpInfo) | **DELETE** /api/requirement/delete | Delete a test requirement
 *RestApisTestPlanApi* | [**deleteAllRequirements**](docs/RestApisTestPlanApi.md#deleteAllRequirements) | **DELETE** /api/requirement/delete/all | Delete all test requirements
 *RestApisTestPlanApi* | [**deleteAllRequirementsWithHttpInfo**](docs/RestApisTestPlanApi.md#deleteAllRequirementsWithHttpInfo) | **DELETE** /api/requirement/delete/all | Delete all test requirements
+*RestApisTestPlanApi* | [**deleteRequirement**](docs/RestApisTestPlanApi.md#deleteRequirement) | **DELETE** /api/requirement/delete | Delete a test requirement
+*RestApisTestPlanApi* | [**deleteRequirementWithHttpInfo**](docs/RestApisTestPlanApi.md#deleteRequirementWithHttpInfo) | **DELETE** /api/requirement/delete | Delete a test requirement
 *RestApisTestPlanApi* | [**fetchRequirement**](docs/RestApisTestPlanApi.md#fetchRequirement) | **GET** /api/requirement/{uuid} | Get a test requirement
 *RestApisTestPlanApi* | [**fetchRequirementWithHttpInfo**](docs/RestApisTestPlanApi.md#fetchRequirementWithHttpInfo) | **GET** /api/requirement/{uuid} | Get a test requirement
 *RestApisTestPlanApi* | [**getAllRequirements**](docs/RestApisTestPlanApi.md#getAllRequirements) | **GET** /api/requirement/all | Get all test requirements
 *RestApisTestPlanApi* | [**getAllRequirementsWithHttpInfo**](docs/RestApisTestPlanApi.md#getAllRequirementsWithHttpInfo) | **GET** /api/requirement/all | Get all test requirements
-*RestApisTestPlanApi* | [**updateAccount**](docs/RestApisTestPlanApi.md#updateAccount) | **PUT** /api/requirement/update | Update a test requirement
-*RestApisTestPlanApi* | [**updateAccountWithHttpInfo**](docs/RestApisTestPlanApi.md#updateAccountWithHttpInfo) | **PUT** /api/requirement/update | Update a test requirement
+*RestApisTestPlanApi* | [**updateRequirement**](docs/RestApisTestPlanApi.md#updateRequirement) | **PUT** /api/requirement/update | Update a test requirement
+*RestApisTestPlanApi* | [**updateRequirementWithHttpInfo**](docs/RestApisTestPlanApi.md#updateRequirementWithHttpInfo) | **PUT** /api/requirement/update | Update a test requirement
 
 
 ## Documentation for Models

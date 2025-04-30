@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-30T16:29:31.396499+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-30T17:26:38.637157+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
 public class RestApisTestPlanApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -175,104 +175,6 @@ public class RestApisTestPlanApi {
   }
 
   /**
-   * Delete a test requirement
-   * API endpoint to delete a test requirement by uuid
-   * @param uuid  (required)
-   * @return Response
-   * @throws ApiException if fails to make API call
-   */
-  public Response deleteAccount(String uuid) throws ApiException {
-    ApiResponse<Response> localVarResponse = deleteAccountWithHttpInfo(uuid);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Delete a test requirement
-   * API endpoint to delete a test requirement by uuid
-   * @param uuid  (required)
-   * @return ApiResponse&lt;Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Response> deleteAccountWithHttpInfo(String uuid) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteAccountRequestBuilder(uuid);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("deleteAccount", localVarResponse);
-        }
-        if (localVarResponse.body() == null) {
-          return new ApiResponse<Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
-
-        return new ApiResponse<Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Response>() {})
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder deleteAccountRequestBuilder(String uuid) throws ApiException {
-    // verify the required parameter 'uuid' is set
-    if (uuid == null) {
-      throw new ApiException(400, "Missing the required parameter 'uuid' when calling deleteAccount");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/requirement/delete";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "uuid";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("uuid", uuid));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
    * Delete all test requirements
    * API endpoint to delete all test requirements
    * @return Response
@@ -336,6 +238,104 @@ public class RestApisTestPlanApi {
     String localVarPath = "/api/requirement/delete/all";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a test requirement
+   * API endpoint to delete a test requirement by uuid
+   * @param uuid  (required)
+   * @return Response
+   * @throws ApiException if fails to make API call
+   */
+  public Response deleteRequirement(String uuid) throws ApiException {
+    ApiResponse<Response> localVarResponse = deleteRequirementWithHttpInfo(uuid);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a test requirement
+   * API endpoint to delete a test requirement by uuid
+   * @param uuid  (required)
+   * @return ApiResponse&lt;Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Response> deleteRequirementWithHttpInfo(String uuid) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteRequirementRequestBuilder(uuid);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteRequirement", localVarResponse);
+        }
+        if (localVarResponse.body() == null) {
+          return new ApiResponse<Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        String responseBody = new String(localVarResponse.body().readAllBytes());
+        localVarResponse.body().close();
+
+        return new ApiResponse<Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Response>() {})
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteRequirementRequestBuilder(String uuid) throws ApiException {
+    // verify the required parameter 'uuid' is set
+    if (uuid == null) {
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling deleteRequirement");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/requirement/delete";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "uuid";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("uuid", uuid));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -518,8 +518,8 @@ public class RestApisTestPlanApi {
    * @return Response
    * @throws ApiException if fails to make API call
    */
-  public Response updateAccount(String uuid, Requirement requirement) throws ApiException {
-    ApiResponse<Response> localVarResponse = updateAccountWithHttpInfo(uuid, requirement);
+  public Response updateRequirement(String uuid, Requirement requirement) throws ApiException {
+    ApiResponse<Response> localVarResponse = updateRequirementWithHttpInfo(uuid, requirement);
     return localVarResponse.getData();
   }
 
@@ -531,8 +531,8 @@ public class RestApisTestPlanApi {
    * @return ApiResponse&lt;Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Response> updateAccountWithHttpInfo(String uuid, Requirement requirement) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateAccountRequestBuilder(uuid, requirement);
+  public ApiResponse<Response> updateRequirementWithHttpInfo(String uuid, Requirement requirement) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateRequirementRequestBuilder(uuid, requirement);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -542,7 +542,7 @@ public class RestApisTestPlanApi {
       }
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("updateAccount", localVarResponse);
+          throw getApiException("updateRequirement", localVarResponse);
         }
         if (localVarResponse.body() == null) {
           return new ApiResponse<Response>(
@@ -571,14 +571,14 @@ public class RestApisTestPlanApi {
     }
   }
 
-  private HttpRequest.Builder updateAccountRequestBuilder(String uuid, Requirement requirement) throws ApiException {
+  private HttpRequest.Builder updateRequirementRequestBuilder(String uuid, Requirement requirement) throws ApiException {
     // verify the required parameter 'uuid' is set
     if (uuid == null) {
-      throw new ApiException(400, "Missing the required parameter 'uuid' when calling updateAccount");
+      throw new ApiException(400, "Missing the required parameter 'uuid' when calling updateRequirement");
     }
     // verify the required parameter 'requirement' is set
     if (requirement == null) {
-      throw new ApiException(400, "Missing the required parameter 'requirement' when calling updateAccount");
+      throw new ApiException(400, "Missing the required parameter 'requirement' when calling updateRequirement");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();

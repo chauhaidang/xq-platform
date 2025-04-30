@@ -22,7 +22,7 @@ paths:
   /api/requirement/update:
     put:
       description: API endpoint to update a test requirement by input request
-      operationId: updateAccount
+      operationId: updateRequirement
       parameters:
       - explode: true
         in: query
@@ -137,7 +137,7 @@ paths:
   /api/requirement/delete:
     delete:
       description: API endpoint to delete a test requirement by uuid
-      operationId: deleteAccount
+      operationId: deleteRequirement
       parameters:
       - explode: true
         in: query
