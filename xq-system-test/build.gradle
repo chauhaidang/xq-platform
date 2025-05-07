@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'xq'
+version = '1.0.0'
+
+ext {
+    karateVersion = '1.5.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
+    testImplementation(project(":xq-api-test-plan"))
+    testImplementation(project(":jvm-kit-common"))
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "dev")
+    outputs.upToDateWhen { false }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+// Optional: Configure test output
+task karateReport(type: Copy) {
+    dependsOn test
+    from 'target/karate-reports'
+    into 'build/karate-reports'
+}
