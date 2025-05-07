@@ -4,7 +4,7 @@ TestPlan microservice
 
 - API version: v1
 
-- Build date: 2025-04-30T17:26:38.637157+07:00[Asia/Ho_Chi_Minh]
+- Build date: 2025-05-07T22:59:34.604670+07:00[Asia/Ho_Chi_Minh]
 
 - Generator version: 7.12.0
 

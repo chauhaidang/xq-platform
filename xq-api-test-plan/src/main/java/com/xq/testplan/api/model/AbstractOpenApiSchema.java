@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Abstract class for oneOf,anyOf schemas defined in OpenAPI spec
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-30T17:26:38.637157+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-05-07T22:59:34.604670+07:00[Asia/Ho_Chi_Minh]", comments = "Generator version: 7.12.0")
 public abstract class AbstractOpenApiSchema {
 
     // store the actual instance of the schema/object
