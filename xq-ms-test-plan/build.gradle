@@ -92,7 +92,6 @@ tasks.register("msCompTest", Test) {
     useJUnitPlatform()
     systemProperty "karate.options", "-t=@progression"
     systemProperty "karate.env", System.properties.getProperty("karate.env")
-    systemProperty("test", "ComponentTest")
     outputs.upToDateWhen { false }
 }
 

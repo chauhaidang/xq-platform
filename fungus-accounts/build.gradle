@@ -37,7 +37,6 @@ dependencies {
 
     testImplementation "org.springframework.boot:spring-boot-starter-test:$springboot_version"
     testImplementation 'com.intuit.karate:karate-core:1.4.1'
-    implementation(project(":api-client-spec"))
     testImplementation 'io.rest-assured:rest-assured:5.5.0'
 }
 
