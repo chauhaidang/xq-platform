@@ -26,15 +26,49 @@ jobs:
       - name: Compose summary report
         run: |
           cp xq-system-test/build/karate-reports/karate-summary-json.txt xq-system-test/build/karate-reports/karate-summary.json
-          echo "## Summary" >> $GITHUB_STEP_SUMMARY
+          
+          echo "# 🎯 Karate Test Execution Report" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Overview" >> $GITHUB_STEP_SUMMARY
+          
+          # Add execution details
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           cat xq-system-test/build/karate-reports/karate-summary.json | jq -r '
-            "- Total Features: \(.featuresPassed + .featuresFailed + .featuresSkipped)
-            - Features Passed: \(.featuresPassed)
-            - Features Failed: \(.featuresFailed)
-            - Scenarios Passed: \(.scenariosPassed)
-            - Scenarios Failed: \(.scenariosfailed)
-            - Total Time: \(.totalTime) ms"
+          "🕒 Execution Time: \(.totalTime) ms
+          🌍 Environment: \(.env)
+          🔄 Parallel Threads: \(.threads)
+          📅 Date: \(.resultDate)"
           ' >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          
+          # Add status badges
+          echo "## 📈 Test Status" >> $GITHUB_STEP_SUMMARY
+          cat xq-system-test/build/karate-reports/karate-summary.json | jq -r '
+          "![Features](<https://img.shields.io/badge/Features-\(.featuresPassed + .featuresFailed + .featuresSkipped)-blue>)
+          ![Passed](<https://img.shields.io/badge/Passed-\(.featuresPassed)-success>)
+          ![Failed](<https://img.shields.io/badge/Failed-\(.featuresFailed)-red>)
+          ![Skipped](<https://img.shields.io/badge/Skipped-\(.featuresSkipped)-yellow>)"
+          ' >> $GITHUB_STEP_SUMMARY
+          
+          # Add detailed statistics table
+          echo "## 📋 Detailed Statistics" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          cat xq-system-test/build/karate-reports/karate-summary.json | jq -r '
+          "| Total Features | \(.featuresPassed + .featuresFailed + .featuresSkipped) |
+          | Features Passed | \(.featuresPassed) |
+          | Features Failed | \(.featuresFailed) |
+          | Scenarios Passed | \(.scenariosPassed) |
+          | Scenarios Failed | \(.scenariosfailed) |"
+          ' >> $GITHUB_STEP_SUMMARY
+          
+          # Add feature summary if exists
+          echo "## 🔍 Feature Details" >> $GITHUB_STEP_SUMMARY
+          echo "| Feature | Scenarios | Passed | Failed | Duration |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|-----------|---------|---------|-----------|" >> $GITHUB_STEP_SUMMARY
+          cat xq-system-test/build/karate-reports/karate-summary.json | jq -r '
+          .featureSummary[] | "| \(.name) | \(.scenarioCount) | \(.passedCount) | \(.failedCount) | \(.durationMillis) ms |"
+          ' >> $GITHUB_STEP_SUMMARY
+
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:
