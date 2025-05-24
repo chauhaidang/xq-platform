@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.avast.gradle.docker-compose' version '0.17.6'
 }
 
 group = 'xq'
@@ -21,7 +22,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemProperty "karate.env", System.properties.getProperty("karate.env", "dev")
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "system")
     systemProperty "karate.options", "--tags @regression"
     outputs.upToDateWhen { false }
 }
@@ -41,3 +42,15 @@ task karateReport(type: Copy) {
     from 'target/karate-reports'
     into 'build/karate-reports'
 }
+
+dockerCompose {
+    useComposeFiles.set(['docker-compose.yml'])
+    removeVolumes.set(true)
+    removeOrphans.set(true)
+    waitForTcpPorts.set(true)
+    captureContainersOutput.set(true)
+    stopContainers.set(true)
+}
+
+test.dependsOn composeUp
+test.finalizedBy composeDown
