@@ -26,14 +26,3 @@ jobs:
         with:
           name: karate-report
           path: xq-system-test/build/karate-reports
-      - name: HTML Preview
-        id: html_preview
-        uses: pavi2410/html-preview-action@v4
-        with:
-          html_file: 'xq-system-test/build/karate-reports/karate-summary.html'
-          job_summary: true
-      - name: Deploy HTML report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: xq-system-test/build/karate-reports
