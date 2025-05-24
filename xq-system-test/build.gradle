@@ -20,13 +20,6 @@ dependencies {
     testImplementation(project(":jvm-kit-common"))
 }
 
-test {
-    useJUnitPlatform()
-    systemProperty "karate.env", System.properties.getProperty("karate.env", "system")
-    systemProperty "karate.options", "--tags @regression"
-    outputs.upToDateWhen { false }
-}
-
 sourceSets {
     test {
         resources {
@@ -36,11 +29,25 @@ sourceSets {
     }
 }
 
-// Optional: Configure test output
-task karateReport(type: Copy) {
-    dependsOn test
-    from 'target/karate-reports'
-    into 'build/karate-reports'
+test {
+    useJUnitPlatform()
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "system")
+    systemProperty "karate.options", "--tags @regression"
+    filter {
+        includeTestsMatching("e2e.TestRunner")
+    }
+    outputs.upToDateWhen { false }
+}
+
+tasks.register('testDebug', Test.class) {
+    group = 'verification'
+    useJUnitPlatform()
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "system")
+    systemProperty "karate.options", "--tags @regression"
+    filter {
+        includeTestsMatching("e2e.TestRunner")
+    }
+    outputs.upToDateWhen { false }
 }
 
 dockerCompose {

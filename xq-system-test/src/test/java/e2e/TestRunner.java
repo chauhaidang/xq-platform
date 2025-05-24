@@ -6,10 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ApiEndToEndTest {
+public class TestRunner {
     @Test
     void testThatUserCanManageRequirement() {
-        Results results = Runner.path("classpath:e2e/manage-requirement.feature").parallel(1);
+        Results results = Runner.path("classpath:e2e")
+                .outputCucumberJson(true)
+                .outputHtmlReport(true)
+                .reportDir("build/karate-reports")
+                .parallel(1);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 }

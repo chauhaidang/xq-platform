@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  execute:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,9 +19,23 @@ jobs:
           sudo apt-get install -y docker-compose
       - name: Log in to GitHub Packages Docker registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - run: |
+      - name: Run test
+        run: |
           ./gradlew :xq-system-test:test
-      - name: Upload HTML Report
+
+      - name: Compose summary report
+        run: |
+          cp xq-system-test/build/karate-reports/karate-summary-json.txt xq-system-test/build/karate-reports/karate-summary.json
+          echo "## Summary" >> $GITHUB_STEP_SUMMARY
+          cat xq-system-test/build/karate-reports/karate-summary.json | jq -r '
+            "- Total Features: \(.featuresPassed + .featuresFailed + .featuresSkipped)
+            - Features Passed: \(.featuresPassed)
+            - Features Failed: \(.featuresFailed)
+            - Scenarios Passed: \(.scenariosPassed)
+            - Scenarios Failed: \(.scenariosfailed)
+            - Total Time: \(.totalTime) ms"
+          ' >> $GITHUB_STEP_SUMMARY
+      - name: Upload report
         uses: actions/upload-artifact@v4
         with:
           name: karate-report
