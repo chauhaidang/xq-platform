@@ -1,0 +1,19 @@
+name: E2E
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      packages-pull: read    # Add this for container registry access
+    env:
+      GITHUB_ACTOR: ${{ github.actor }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          cd ./xq-system-test
+          docker-compose up
+          docker-compose down
