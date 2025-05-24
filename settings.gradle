@@ -25,6 +25,9 @@ pluginManagement {
     ext {
         pluginXqVersion = '2.0.3'
     }
+
+    // When a module use plugin with id starting with 'xq'
+    // use the custom plugin with pattern 'com.xq:plugin:version:pluginId@gradle'
     resolutionStrategy {
         eachPlugin {
             if (requested.id.toString().startsWith('xq')) {
