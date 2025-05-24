@@ -1,6 +1,8 @@
 package com.xq;
 
 import java.util.Random;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class StringUtility {
     public static String generateRandomString(int length) {
@@ -13,5 +15,16 @@ public class StringUtility {
                 .limit(length)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    public static BiFunction<Integer, String, String> generateRandomStringPrefix = (length, prefix) -> {
+        if (prefix == null || prefix.isEmpty()) {
+            return generateRandomString(length);
+        }
+        return prefix + generateRandomString(length);
+    };
+
+    public static Supplier<String> fnGenerateRandomStringPrefix(Integer length, String prefix) {
+        return () -> generateRandomStringPrefix.apply(length, prefix);
     }
 }

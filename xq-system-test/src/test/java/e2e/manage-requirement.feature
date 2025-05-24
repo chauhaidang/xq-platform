@@ -1,18 +1,15 @@
 Feature: Test Requirements API
 
   Background:
-    * def randomTitle =
-      """
-      function(max){ return "title-" + Math.floor(Math.random() * max) }
-      """
     * def testPlan = apis.testPlan
     * def Requirement = models.Requirement
 
+  @regression
   Scenario: User create and view requirement
     Given def requirement =
       """
       {
-        title: "#(randomTitle(1000))",
+        title: "#(randomTitle())",
         description: 'Test Description',
         scopes: 'scope1,scope2',
         tags: 'tag1,tag2',
