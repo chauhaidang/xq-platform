@@ -17,7 +17,7 @@ repositories {
 dependencies {
     testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
     testImplementation(project(":xq-api-test-plan"))
-    testImplementation(project(":jvm-kit-common"))
+    testImplementation "com.xq:xq-kit-common:1.0.0"
 }
 
 sourceSets {
