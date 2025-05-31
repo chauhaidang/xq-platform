@@ -87,11 +87,11 @@ tasks.register("msCompTest", Test) {
     group = "xq"
     description = "run micro-service component testing"
     filter {
-        includeTestsMatching("com.xq.testplan.component.*")
+        includeTestsMatching "com.xq.testplan.component.ComponentTestRunner"
     }
     useJUnitPlatform()
     systemProperty "karate.options", "-t=@progression"
-    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "component")
     outputs.upToDateWhen { false }
 }
 
